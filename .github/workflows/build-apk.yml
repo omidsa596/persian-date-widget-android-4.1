@@ -1,0 +1,88 @@
+name: Build & Sign Persian Date Widget (APK & AAB)
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build & Release Package (20 Widgets + Custom App Icon)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+          cache-disabled: true
+
+      - name: Configure Release Keystore Signature
+        run: |
+          mkdir -p app
+          if [ -n "${{ secrets.RELEASE_KEYSTORE_BASE64 }}" ]; then
+            echo "Decoding release keystore from GitHub Secrets..."
+            echo "${{ secrets.RELEASE_KEYSTORE_BASE64 }}" | base64 --decode > app/release-key.jks
+          elif [ ! -f "app/release-key.jks" ]; then
+            echo "Generating production release signing keystore..."
+            keytool -genkeypair -v \
+              -keystore app/release-key.jks \
+              -alias "persianwidget" \
+              -keyalg RSA \
+              -keysize 2048 \
+              -validity 10000 \
+              -storepass "persian1234" \
+              -keypass "persian1234" \
+              -dname "CN=Persian Date Widget, OU=Android, O=Developer, L=Tehran, C=IR"
+          fi
+          echo "Keystore verified at app/release-key.jks"
+
+      - name: Build Release APK & Bundle AAB
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD || 'persian1234' }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS || 'persianwidget' }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD || 'persian1234' }}
+        run: |
+          gradle assembleRelease bundleRelease --no-daemon --stacktrace
+
+      - name: Prepare Signed Artifacts
+        run: |
+          mkdir -p publish_outputs
+          if [ -f "app/build/outputs/apk/release/app-release.apk" ]; then
+            cp app/build/outputs/apk/release/app-release.apk publish_outputs/PersianDateWidget-Release.apk
+          elif [ -f "app/build/outputs/apk/release/app-release-unsigned.apk" ]; then
+            cp app/build/outputs/apk/release/app-release-unsigned.apk publish_outputs/PersianDateWidget-Release.apk
+          fi
+          if [ -f "app/build/outputs/bundle/release/app-release.aab" ]; then
+            cp app/build/outputs/bundle/release/app-release.aab publish_outputs/PersianDateWidget-GooglePlay.aab
+          fi
+
+      - name: Upload Release APK (Bazaar, Myket, Direct Download)
+        uses: actions/upload-artifact@v4
+        with:
+          name: PersianDateWidget-Release-APK
+          path: publish_outputs/PersianDateWidget-Release.apk
+          retention-days: 30
+
+      - name: Upload Google Play AAB Bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: PersianDateWidget-GooglePlay-AAB
+          path: publish_outputs/PersianDateWidget-GooglePlay.aab
+          retention-days: 30
+
+      - name: Upload Release Keystore (Backup for Future Updates)
+        uses: actions/upload-artifact@v4
+        with:
+          name: PersianDateWidget-Keystore-Backup
+          path: app/release-key.jks
+          retention-days: 30

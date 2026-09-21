@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ویجت تاریخ شمسی</string>
+    <string name="developer_name">omidsa596</string>
+    
+    <string name="widget_title_pure_text">۱. متن ساده بدون پس‌زمینه (شفاف)</string>
+    <string name="widget_desc_pure_text">تک‌خطی و کاملاً شفاف؛ فونت خوانا بدون کادر، مناسب قرارگیری مستقیم روی والپیپر • omidsa596</string>
+
+    <string name="widget_title_glass_celestial">۲. شیشه‌ای ۲۰٪ با خورشید و ماه</string>
+    <string name="widget_desc_glass_celestial">کارت شیشه‌ای ۲۰٪ ترنسپرنت؛ در روز آیکون خورشید ☀️ و در شب آیکون ماه 🌙 • omidsa596</string>
+
+    <string name="widget_title_modern_capsule">۳. کپسول شیشه‌ای مدرن</string>
+    <string name="widget_desc_modern_capsule">کپسول گرد بلوری؛ تفکیک روز هفته با نشان آبی‌رنگ و ساعت زنده • omidsa596</string>
+
+    <string name="widget_title_compact_classic">۴. کلاسیک تقویمی ساده فشرده</string>
+    <string name="widget_desc_compact_classic">ابعاد جمع‌وجور ۱×۲ با نمایش تقویمی متمرکز و تاریخ شمسی خوانا • omidsa596</string>
+
+    <string name="widget_title_minimal_pill">۵. کپسول مینیاتوری مینیمال</string>
+    <string name="widget_desc_minimal_pill">پیل گرد ظریف با تاریخ شمسی مختصر و ساعت فشرده برای فضاهای محدود • omidsa596</string>
+
+    <string name="widget_title_split_horizon">۶. افقی دو تکه باریک با جداکننده</string>
+    <string name="widget_desc_split_horizon">کارت عریض ۱×۴ با جداکننده شیشه‌ای و تفکیک متقارن زمان و تقویم شمسی • omidsa596</string>
+
+    <string name="widget_title_paper_clean">۷. طرح کاغذ مینیمال نوردیک</string>
+    <string name="widget_desc_paper_clean">پس‌زمینه سفید مات با فونت مشکی دودی بسیار خوانا و کنتراست بالا • omidsa596</string>
+
+    <string name="widget_title_retro_digital">۸. دیجیتال ال‌سی‌دی نوستالژیک</string>
+    <string name="widget_desc_retro_digital">طراحی رترو نمایشگر ال‌سی‌دی با تاریخ شمسی تقویمی و ساعت بزرگ • omidsa596</string>
+
+    <string name="widget_title_neon_cyan_card">۹. کارت شیشه‌ای نئون فیروزه‌ای</string>
+    <string name="widget_desc_neon_cyan_card">هاله نور فیروزه‌ای سیان با استایل سایبرپانک و تقویم درخشان • omidsa596</string>
+
+    <string name="widget_title_calendar_tile">۱۰. کاشی تقویم دیواری روز درشت</string>
+    <string name="widget_desc_calendar_tile">کاشی ۲×۲ متمرکز با عدد روز بزرگ، نام ماه و سال شمسی • omidsa596</string>
+
+    <string name="widget_title_luxury_dark">۱۱. آبسیدین متالیک با طلای ۲۴ عیار</string>
+    <string name="widget_desc_luxury_dark">شیشه تیره دودی با خطوط و فونت متالیک طلایی باشکوه و کادر تقویم اختصاصی • omidsa596</string>
+
+    <string name="widget_title_aurora_glass">۱۲. شیشه آئورا با بازتاب کریستالی</string>
+    <string name="widget_desc_aurora_glass">طیف رنگین شفق قطبی با هاله بنفش-فیروزه‌ای و تقویم ۳گانه کامل • omidsa596</string>
+
+    <string name="widget_title_cyber_gold_2x2">۱۳. داشبورد سایبرگلد مربعی (ساعت و تقویم)</string>
+    <string name="widget_desc_cyber_gold_2x2">داشبورد ۲×۲ لوکس با ساعت دیجیتال زنده، کادر طلایی متالیک و تاریخ کامل • omidsa596</string>
+
+    <string name="widget_title_diamond_prism">۱۴. منشور الماسی ۳بعدی با شکست نور</string>
+    <string name="widget_desc_diamond_prism">کادر الماس‌تراش با پرتوهای نوری و فونت طلایی براق سلطنتی • omidsa596</string>
+
+    <string name="widget_title_executive_leather">۱۵. چرم مشکی دست‌دوز با پلاک برنز</string>
+    <string name="widget_desc_executive_leather">بافت چرم و فیبر کربن تیره با پلاک فلزی برنز پولیش‌خورده • omidsa596</string>
+
+    <string name="widget_title_analog_celestial">۱۶. مگا داشبورد ۲×۴ سلطنتی با فاز ماه</string>
+    <string name="widget_desc_analog_celestial">تقویم کامل ۳گانه (شمسی، قمری، میلادی)، فاز زنده ماه و مناسبت روز در ابعاد ۲×۴ • omidsa596</string>
+
+    <string name="widget_title_hologram_grid">۱۷. هولوگرام شناور سایبرپانک</string>
+    <string name="widget_desc_hologram_grid">گرید ماتریسی لیزری آبی با افکت اسکنر راداری و تایپوگرافی هولوگرافیک • omidsa596</string>
+
+    <string name="widget_title_royal_emerald">۱۸. زمرد سلطنتی و برنج صیقلی فاخر</string>
+    <string name="widget_desc_royal_emerald">زمرد عمیق یشمی با کادر طلاکوب و قلم فاخر ایرانی برای تقویم • omidsa596</string>
+
+    <string name="widget_title_frosted_liquid">۱۹. شیشه مایع ژلاتینی مات</string>
+    <string name="widget_desc_frosted_liquid">حباب‌های نوری شناور با افکت گلس بلور فوق‌العاده نرم و تایپوگرافی پاستلی • omidsa596</string>
+
+    <string name="widget_title_titanium_chronos">۲۰. تیتانیوم فضاپیمایی با زمان‌سنج دقیق</string>
+    <string name="widget_desc_titanium_chronos">بدنه تیتانیوم گرید هوافضا با رینگ زمان‌سنج، ثانیه‌شمار زنده و نمایش تقویم • omidsa596</string>
+</resources>

@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
+
+        <!-- Developer Credit Metadata -->
+        <meta-data
+            android:name="developer"
+            android:value="omidsa596" />
+
+        <!-- App Launcher Activity -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- ۱. متن ساده بدون پس‌زمینه (شفاف) -->
+        <receiver
+            android:name=".PureTextWidgetReceiver"
+            android:label="@string/widget_title_pure_text"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_pure_text" />
+        </receiver>
+
+        <!-- ۲. شیشه‌ای ۲۰٪ با خورشید و ماه -->
+        <receiver
+            android:name=".GlassCelestialWidgetReceiver"
+            android:label="@string/widget_title_glass_celestial"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_glass_celestial" />
+        </receiver>
+
+        <!-- ۳. کپسول شیشه‌ای مدرن -->
+        <receiver
+            android:name=".ModernCapsuleWidgetReceiver"
+            android:label="@string/widget_title_modern_capsule"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_modern_capsule" />
+        </receiver>
+
+        <!-- ۴. کلاسیک تقویمی ساده فشرده -->
+        <receiver
+            android:name=".CompactClassicWidgetReceiver"
+            android:label="@string/widget_title_compact_classic"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_compact_classic" />
+        </receiver>
+
+        <!-- ۵. کپسول مینیاتوری مینیمال -->
+        <receiver
+            android:name=".MinimalPillWidgetReceiver"
+            android:label="@string/widget_title_minimal_pill"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_minimal_pill" />
+        </receiver>
+
+        <!-- ۶. افقی دو تکه باریک با جداکننده -->
+        <receiver
+            android:name=".SplitHorizonWidgetReceiver"
+            android:label="@string/widget_title_split_horizon"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_split_horizon" />
+        </receiver>
+
+        <!-- ۷. طرح کاغذ مینیمال نوردیک -->
+        <receiver
+            android:name=".PaperCleanWidgetReceiver"
+            android:label="@string/widget_title_paper_clean"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_paper_clean" />
+        </receiver>
+
+        <!-- ۸. دیجیتال ال‌سی‌دی نوستالژیک -->
+        <receiver
+            android:name=".RetroDigitalWidgetReceiver"
+            android:label="@string/widget_title_retro_digital"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_retro_digital" />
+        </receiver>
+
+        <!-- ۹. کارت شیشه‌ای نئون فیروزه‌ای -->
+        <receiver
+            android:name=".NeonCyanCardWidgetReceiver"
+            android:label="@string/widget_title_neon_cyan_card"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_neon_cyan_card" />
+        </receiver>
+
+        <!-- ۱۰. کاشی تقویم دیواری روز درشت -->
+        <receiver
+            android:name=".CalendarTileWidgetReceiver"
+            android:label="@string/widget_title_calendar_tile"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_calendar_tile" />
+        </receiver>
+
+        <!-- ۱۱. آبسیدین متالیک با طلای ۲۴ عیار -->
+        <receiver
+            android:name=".LuxuryDarkWidgetReceiver"
+            android:label="@string/widget_title_luxury_dark"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_luxury_dark" />
+        </receiver>
+
+        <!-- ۱۲. شیشه آئورا با بازتاب کریستالی -->
+        <receiver
+            android:name=".AuroraGlassWidgetReceiver"
+            android:label="@string/widget_title_aurora_glass"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_aurora_glass" />
+        </receiver>
+
+        <!-- ۱۳. داشبورد سایبرگلد مربعی (ساعت و تقویم) -->
+        <receiver
+            android:name=".CyberGold2x2WidgetReceiver"
+            android:label="@string/widget_title_cyber_gold_2x2"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_cyber_gold_2x2" />
+        </receiver>
+
+        <!-- ۱۴. منشور الماسی ۳بعدی با شکست نور -->
+        <receiver
+            android:name=".DiamondPrismWidgetReceiver"
+            android:label="@string/widget_title_diamond_prism"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_diamond_prism" />
+        </receiver>
+
+        <!-- ۱۵. چرم مشکی دست‌دوز با پلاک برنز -->
+        <receiver
+            android:name=".ExecutiveLeatherWidgetReceiver"
+            android:label="@string/widget_title_executive_leather"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_executive_leather" />
+        </receiver>
+
+        <!-- ۱۶. مگا داشبورد ۲×۴ سلطنتی با فاز ماه -->
+        <receiver
+            android:name=".AnalogCelestialWidgetReceiver"
+            android:label="@string/widget_title_analog_celestial"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_analog_celestial" />
+        </receiver>
+
+        <!-- ۱۷. هولوگرام شناور سایبرپانک -->
+        <receiver
+            android:name=".HologramGridWidgetReceiver"
+            android:label="@string/widget_title_hologram_grid"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_hologram_grid" />
+        </receiver>
+
+        <!-- ۱۸. زمرد سلطنتی و برنج صیقلی فاخر -->
+        <receiver
+            android:name=".RoyalEmeraldWidgetReceiver"
+            android:label="@string/widget_title_royal_emerald"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_royal_emerald" />
+        </receiver>
+
+        <!-- ۱۹. شیشه مایع ژلاتینی مات -->
+        <receiver
+            android:name=".FrostedLiquidWidgetReceiver"
+            android:label="@string/widget_title_frosted_liquid"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_frosted_liquid" />
+        </receiver>
+
+        <!-- ۲۰. تیتانیوم فضاپیمایی با زمان‌سنج دقیق -->
+        <receiver
+            android:name=".TitaniumChronosWidgetReceiver"
+            android:label="@string/widget_title_titanium_chronos"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.omidsa596pwid.ACTION_MIDNIGHT_UPDATE" />
+                <action android:name="com.omidsa596pwid.ACTION_MANUAL_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_titanium_chronos" />
+        </receiver>
+
+    </application>
+
+</manifest>
