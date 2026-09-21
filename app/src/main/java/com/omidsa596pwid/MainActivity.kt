@@ -32,6 +32,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.animation.core.*
+import androidx.compose.foundation.Canvas
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.drawscope.Stroke
 
 class MainActivity : ComponentActivity() {
 
@@ -580,44 +587,8 @@ fun WidgetCardItem(
 
             Spacer(modifier = Modifier.height(10.dp))
 
-            // Realistic Preview Box
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(
-                        if (isPro) Color(0xFF0F1523) else Color(0xFF0E1726),
-                        RoundedCornerShape(16.dp)
-                    )
-                    .border(
-                        1.dp,
-                        if (isPro) Color(0x33F59E0B) else Color(0x22FFFFFF),
-                        RoundedCornerShape(16.dp)
-                    )
-                    .padding(vertical = 12.dp, horizontal = 14.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text(
-                        text = "🕒  " + jalaliDate.timePersianSpaced,
-                        fontSize = 13.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = if (isPro) Color(0xFFFDE68A) else Color(0xEEFFFFFF)
-                    )
-                    Spacer(modifier = Modifier.height(3.dp))
-                    Text(
-                        text = jalaliDate.dayOfWeekSimple + " " + jalaliDate.dayPersian + " " + jalaliDate.monthName + " " + jalaliDate.yearPersian,
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
-                    )
-                    Spacer(modifier = Modifier.height(2.dp))
-                    Text(
-                        text = jalaliDate.gregorianDateString,
-                        fontSize = 10.sp,
-                        color = Color(0x99FFFFFF)
-                    )
-                }
-            }
+            // Live Realistic Interactive Preview Box
+            WidgetLivePreviewDispatcher(widget.id, jalaliDate)
 
             Spacer(modifier = Modifier.height(12.dp))
 
@@ -634,6 +605,1289 @@ fun WidgetCardItem(
                     fontSize = 12.5.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.White
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun WidgetLivePreviewDispatcher(widgetId: String, jalaliDate: JalaliDateInfo) {
+    when (widgetId) {
+        "pure-text" -> PureTextLivePreview(jalaliDate)
+        "glass-celestial" -> GlassCelestialLivePreview(jalaliDate)
+        "modern-capsule" -> ModernCapsuleLivePreview(jalaliDate)
+        "compact-classic" -> CompactClassicLivePreview(jalaliDate)
+        "minimal-pill" -> MinimalPillLivePreview(jalaliDate)
+        "split-horizon" -> SplitHorizonLivePreview(jalaliDate)
+        "paper-clean" -> PaperCleanLivePreview(jalaliDate)
+        "retro-digital" -> RetroDigitalLivePreview(jalaliDate)
+        "neon-cyan" -> NeonCyanLivePreview(jalaliDate)
+        "calendar-tile" -> CalendarTileLivePreview(jalaliDate)
+        "luxury-dark" -> LuxuryDarkLivePreview(jalaliDate)
+        "aurora-glass" -> AuroraGlassLivePreview(jalaliDate)
+        "cyber-gold-2x2" -> CyberGoldLivePreview(jalaliDate)
+        "diamond-prism" -> DiamondPrismLivePreview(jalaliDate)
+        "executive-leather" -> ExecutiveLeatherLivePreview(jalaliDate)
+        "analog-celestial" -> AnalogCelestialLivePreview(jalaliDate)
+        "hologram-grid" -> HologramGridLivePreview(jalaliDate)
+        "royal-emerald" -> RoyalEmeraldLivePreview(jalaliDate)
+        "frosted-liquid" -> FrostedLiquidLivePreview(jalaliDate)
+        "titanium-chronos" -> TitaniumChronosLivePreview(jalaliDate)
+        else -> PureTextLivePreview(jalaliDate)
+    }
+}
+
+/** 1. Pure Text **/
+@Composable
+fun PureTextLivePreview(jalaliDate: JalaliDateInfo) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .background(Color(0xFF0A0F1D))
+            .border(1.dp, Color(0x22FFFFFF), RoundedCornerShape(16.dp))
+            .padding(14.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(
+                text = jalaliDate.dayOfWeekSimple + " " + jalaliDate.dayPersian + " " + jalaliDate.monthName,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+            Spacer(modifier = Modifier.height(3.dp))
+            Text(
+                text = "سال " + jalaliDate.yearPersian + " • ساعت " + jalaliDate.timePersian,
+                fontSize = 11.sp,
+                color = Color(0xFF94A3B8)
+            )
+            Spacer(modifier = Modifier.height(2.dp))
+            Text(
+                text = jalaliDate.gregorianDateString,
+                fontSize = 10.sp,
+                color = Color(0xFF64748B)
+            )
+        }
+    }
+}
+
+/** 2. Glass Celestial **/
+@Composable
+fun GlassCelestialLivePreview(jalaliDate: JalaliDateInfo) {
+    val infTransition = rememberInfiniteTransition(label = "celestial")
+    val auraAlpha by infTransition.animateFloat(
+        initialValue = 0.5f,
+        targetValue = 0.95f,
+        animationSpec = infiniteRepeatable(tween(2000, easing = FastOutSlowInEasing), RepeatMode.Reverse),
+        label = "aura"
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(18.dp))
+            .background(
+                Brush.horizontalGradient(
+                    listOf(Color(0xFF0C1A30), Color(0xFF1E293B))
+                )
+            )
+            .border(1.dp, Color(0xFF38BDF8).copy(alpha = 0.4f), RoundedCornerShape(18.dp))
+            .padding(14.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Box(
+                    modifier = Modifier
+                        .size(38.dp)
+                        .clip(CircleShape)
+                        .background(Color(0xFFF59E0B).copy(alpha = 0.2f * auraAlpha))
+                        .border(1.dp, Color(0xFFF59E0B).copy(alpha = auraAlpha), CircleShape),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = if (jalaliDate.isDaytime) "☀️" else "🌙",
+                        fontSize = 18.sp
+                    )
+                }
+                Spacer(modifier = Modifier.width(10.dp))
+                Column {
+                    Text(
+                        text = jalaliDate.dayPersian + " " + jalaliDate.monthName,
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                    Text(
+                        text = jalaliDate.dayOfWeekSimple,
+                        fontSize = 11.sp,
+                        color = Color(0xFFFDE68A)
+                    )
+                }
+            }
+            Surface(
+                shape = RoundedCornerShape(10.dp),
+                color = Color(0x33000000),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0x3338BDF8))
+            ) {
+                Text(
+                    text = jalaliDate.timePersian,
+                    fontSize = 13.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF7DD3FC),
+                    modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
+                )
+            }
+        }
+    }
+}
+
+/** 3. Modern Capsule **/
+@Composable
+fun ModernCapsuleLivePreview(jalaliDate: JalaliDateInfo) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(26.dp))
+            .background(Color(0x33FFFFFF))
+            .border(1.dp, Color(0x44FFFFFF), RoundedCornerShape(26.dp))
+            .padding(horizontal = 14.dp, vertical = 10.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Surface(
+                shape = RoundedCornerShape(12.dp),
+                color = Color(0x330284C7),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0x550284C7))
+            ) {
+                Text(
+                    text = jalaliDate.dayOfWeekSimple,
+                    fontSize = 11.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF7DD3FC),
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                )
+            }
+            Text(
+                text = jalaliDate.dayPersian + " " + jalaliDate.monthName,
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+            Surface(
+                shape = RoundedCornerShape(10.dp),
+                color = Color(0x44000000)
+            ) {
+                Text(
+                    text = jalaliDate.timePersian,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Medium,
+                    color = Color(0xEEFFFFFF),
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                )
+            }
+        }
+    }
+}
+
+/** 4. Compact Classic **/
+@Composable
+fun CompactClassicLivePreview(jalaliDate: JalaliDateInfo) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(18.dp))
+            .background(Color(0xFF1E1B4B).copy(alpha = 0.6f))
+            .border(1.dp, Color(0xFF6366F1).copy(alpha = 0.4f), RoundedCornerShape(18.dp))
+            .padding(12.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Box(
+                    modifier = Modifier
+                        .size(44.dp)
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(Color(0xFF4F46E5).copy(alpha = 0.4f))
+                        .border(1.dp, Color(0xFF818CF8), RoundedCornerShape(12.dp)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(
+                            text = jalaliDate.dayPersian,
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.Black,
+                            color = Color.White
+                        )
+                        Text(
+                            text = jalaliDate.monthName,
+                            fontSize = 8.sp,
+                            color = Color(0xFFC7D2FE)
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.width(12.dp))
+                Column {
+                    Text(
+                        text = jalaliDate.dayOfWeekSimple,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                    Text(
+                        text = "سال " + jalaliDate.yearPersian,
+                        fontSize = 10.sp,
+                        color = Color(0xFF94A3B8)
+                    )
+                }
+            }
+            Text(
+                text = jalaliDate.timePersian,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF818CF8)
+            )
+        }
+    }
+}
+
+/** 5. Minimal Pill **/
+@Composable
+fun MinimalPillLivePreview(jalaliDate: JalaliDateInfo) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(24.dp))
+            .background(Color(0xFF1E293B).copy(alpha = 0.7f))
+            .border(1.dp, Color(0x33FFFFFF), RoundedCornerShape(24.dp))
+            .padding(horizontal = 14.dp, vertical = 10.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = jalaliDate.dayPersian,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Black,
+                    color = Color(0xFFF59E0B)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Column {
+                    Text(
+                        text = jalaliDate.monthName,
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                    Text(
+                        text = jalaliDate.dayOfWeekSimple,
+                        fontSize = 10.sp,
+                        color = Color(0xFF94A3B8)
+                    )
+                }
+            }
+            Surface(
+                shape = RoundedCornerShape(12.dp),
+                color = Color(0x22FFFFFF)
+            ) {
+                Text(
+                    text = jalaliDate.timePersian,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                    modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp)
+                )
+            }
+        }
+    }
+}
+
+/** 6. Split Horizon **/
+@Composable
+fun SplitHorizonLivePreview(jalaliDate: JalaliDateInfo) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .background(Color(0xFF042F2E).copy(alpha = 0.5f))
+            .border(1.dp, Color(0xFF2DD4BF).copy(alpha = 0.4f), RoundedCornerShape(16.dp))
+            .padding(12.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = jalaliDate.gregorianDateString,
+                fontSize = 10.sp,
+                color = Color(0xFF99F6E4)
+            )
+            Text(
+                text = jalaliDate.dayOfWeekSimple + " • " + jalaliDate.dayPersian + " " + jalaliDate.monthName,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+            Text(
+                text = jalaliDate.timePersian,
+                fontSize = 13.sp,
+                fontWeight = FontWeight.Black,
+                color = Color(0xFF2DD4BF)
+            )
+        }
+    }
+}
+
+/** 7. Paper Clean **/
+@Composable
+fun PaperCleanLivePreview(jalaliDate: JalaliDateInfo) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .background(Color(0xFFF1F5F9))
+            .border(1.dp, Color(0xFFCBD5E1), RoundedCornerShape(16.dp))
+            .padding(14.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column {
+                Text(
+                    text = jalaliDate.dayOfWeekSimple + " " + jalaliDate.dayPersian + " " + jalaliDate.monthName,
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Black,
+                    color = Color(0xFF0F172A)
+                )
+                Text(
+                    text = "سال " + jalaliDate.yearPersian,
+                    fontSize = 10.sp,
+                    color = Color(0xFF64748B)
+                )
+            }
+            Surface(
+                shape = RoundedCornerShape(8.dp),
+                color = Color(0xFFE2E8F0)
+            ) {
+                Text(
+                    text = jalaliDate.timePersian,
+                    fontSize = 13.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF334155),
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                )
+            }
+        }
+    }
+}
+
+/** 8. Retro Digital (Blinking LCD) **/
+@Composable
+fun RetroDigitalLivePreview(jalaliDate: JalaliDateInfo) {
+    val infTransition = rememberInfiniteTransition(label = "lcd")
+    val colonAlpha by infTransition.animateFloat(
+        initialValue = 1f,
+        targetValue = 0.1f,
+        animationSpec = infiniteRepeatable(tween(800), RepeatMode.Reverse),
+        label = "colon"
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(14.dp))
+            .background(Color(0xFF8B9D83))
+            .border(2.dp, Color(0xFF283622), RoundedCornerShape(14.dp))
+            .padding(12.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = "LCD MATRIX  ",
+                    fontSize = 10.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF283622)
+                )
+                Text(
+                    text = jalaliDate.timePersian,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Black,
+                    color = Color(0xFF1E2819)
+                )
+                Text(
+                    text = " :",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Black,
+                    color = Color(0xFF1E2819).copy(alpha = colonAlpha)
+                )
+            }
+            Spacer(modifier = Modifier.height(2.dp))
+            Text(
+                text = jalaliDate.dayOfWeekSimple + " " + jalaliDate.dayPersian + " " + jalaliDate.monthName + " " + jalaliDate.yearPersian,
+                fontSize = 11.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF283622)
+            )
+        }
+    }
+}
+
+/** 9. Neon Cyan (Animated Electric Pulse) **/
+@Composable
+fun NeonCyanLivePreview(jalaliDate: JalaliDateInfo) {
+    val infTransition = rememberInfiniteTransition(label = "neon")
+    val neonAlpha by infTransition.animateFloat(
+        initialValue = 0.5f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(tween(1400, easing = FastOutSlowInEasing), RepeatMode.Reverse),
+        label = "neon"
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .background(Color(0xFF040E1A))
+            .border(2.dp, Color(0xFF00F0FF).copy(alpha = neonAlpha), RoundedCornerShape(16.dp))
+            .padding(14.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Box(
+                    modifier = Modifier
+                        .size(34.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(Color(0xFF00F0FF).copy(alpha = 0.2f * neonAlpha))
+                        .border(1.dp, Color(0xFF00F0FF), RoundedCornerShape(8.dp)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(text = "⚡", fontSize = 16.sp)
+                }
+                Spacer(modifier = Modifier.width(10.dp))
+                Column {
+                    Text(
+                        text = jalaliDate.dayPersian + " " + jalaliDate.monthName,
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Black,
+                        color = Color.White
+                    )
+                    Text(
+                        text = "NEON ELECTRIC • " + jalaliDate.dayOfWeekSimple,
+                        fontSize = 9.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF00F0FF).copy(alpha = neonAlpha)
+                    )
+                }
+            }
+            Surface(
+                shape = RoundedCornerShape(10.dp),
+                color = Color(0xFF003049).copy(alpha = 0.7f),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFF00F0FF).copy(alpha = 0.6f))
+            ) {
+                Text(
+                    text = jalaliDate.timePersian,
+                    fontSize = 13.sp,
+                    fontWeight = FontWeight.Black,
+                    color = Color(0xFF00F0FF),
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 5.dp)
+                )
+            }
+        }
+    }
+}
+
+/** 10. Calendar Tile **/
+@Composable
+fun CalendarTileLivePreview(jalaliDate: JalaliDateInfo) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .background(Color(0xFF0F172A))
+            .border(1.dp, Color(0x33FFFFFF), RoundedCornerShape(16.dp))
+    ) {
+        Column {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color(0xFFDC2626))
+                    .padding(horizontal = 12.dp, vertical = 5.dp)
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = jalaliDate.dayOfWeekSimple,
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.Black,
+                        color = Color.White
+                    )
+                    Text(
+                        text = "📅 تقویم رومیزی",
+                        fontSize = 9.sp,
+                        color = Color.White.copy(alpha = 0.8f)
+                    )
+                }
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 14.dp, vertical = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        text = jalaliDate.dayPersian,
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Black,
+                        color = Color.White
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = jalaliDate.monthName + " " + jalaliDate.yearPersian,
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF94A3B8)
+                    )
+                }
+                Text(
+                    text = jalaliDate.timePersian,
+                    fontSize = 13.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFFEF4444)
+                )
+            }
+        }
+    }
+}
+
+/** 11. Luxury Dark (PRO - Rotating Gold Laser Beam) **/
+@Composable
+fun LuxuryDarkLivePreview(jalaliDate: JalaliDateInfo) {
+    val infTransition = rememberInfiniteTransition(label = "gold")
+    val rotAngle by infTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 360f,
+        animationSpec = infiniteRepeatable(tween(3500, easing = LinearEasing)),
+        label = "rot"
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(18.dp))
+            .background(Color(0xFF0F172A))
+            .padding(2.dp)
+    ) {
+        // Rotating Gold Laser Beam Canvas
+        Canvas(
+            modifier = Modifier
+                .matchParentSize()
+                .rotate(rotAngle)
+        ) {
+            drawCircle(
+                brush = Brush.sweepGradient(
+                    listOf(
+                        Color.Transparent,
+                        Color.Transparent,
+                        Color(0xFFD97706),
+                        Color(0xFFFDE047),
+                        Color.White
+                    )
+                ),
+                radius = size.maxDimension
+            )
+        }
+
+        // Inner Obsidian Body
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(16.dp))
+                .background(Color(0xFF080B11))
+                .padding(14.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Box(
+                        modifier = Modifier
+                            .size(42.dp)
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(
+                                Brush.verticalGradient(
+                                    listOf(Color(0x44F59E0B), Color(0xFF451A03))
+                                )
+                            )
+                            .border(1.dp, Color(0xFFFBBF24), RoundedCornerShape(12.dp)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text(
+                                text = jalaliDate.dayPersian,
+                                fontSize = 15.sp,
+                                fontWeight = FontWeight.Black,
+                                color = Color(0xFFFEF08A)
+                            )
+                            Text(
+                                text = jalaliDate.monthName,
+                                fontSize = 8.sp,
+                                color = Color(0xFFFDE68A)
+                            )
+                        }
+                    }
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Column {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(
+                                text = jalaliDate.dayOfWeekSimple,
+                                fontSize = 14.sp,
+                                fontWeight = FontWeight.Black,
+                                color = Color.White
+                            )
+                            Spacer(modifier = Modifier.width(5.dp))
+                            Surface(
+                                shape = RoundedCornerShape(6.dp),
+                                color = Color(0x33F59E0B),
+                                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0x55F59E0B))
+                            ) {
+                                Text(
+                                    text = "PRO 👑",
+                                    fontSize = 8.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color(0xFFFDE68A),
+                                    modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)
+                                )
+                            }
+                        }
+                        Text(
+                            text = "طلای متالیک ۲۴ عیار",
+                            fontSize = 9.sp,
+                            color = Color(0xFFF59E0B).copy(alpha = 0.8f)
+                        )
+                    }
+                }
+                Surface(
+                    shape = RoundedCornerShape(10.dp),
+                    color = Color(0xFF451A03).copy(alpha = 0.8f),
+                    border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFFBBF24).copy(alpha = 0.6f))
+                ) {
+                    Text(
+                        text = "✦ " + jalaliDate.timePersian,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Black,
+                        color = Color(0xFFFDE047),
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 5.dp)
+                    )
+                }
+            }
+        }
+    }
+}
+
+/** 12. Aurora Glass (PRO - Shifting Plasma) **/
+@Composable
+fun AuroraGlassLivePreview(jalaliDate: JalaliDateInfo) {
+    val infTransition = rememberInfiniteTransition(label = "aurora")
+    val shiftX by infTransition.animateFloat(
+        initialValue = -100f,
+        targetValue = 200f,
+        animationSpec = infiniteRepeatable(tween(4000, easing = LinearEasing), RepeatMode.Reverse),
+        label = "plasma"
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(18.dp))
+            .background(
+                Brush.linearGradient(
+                    listOf(Color(0xFF581C87), Color(0xFF064E3B), Color(0xFF831843)),
+                    start = Offset(shiftX, 0f),
+                    end = Offset(shiftX + 400f, 200f)
+                )
+            )
+            .border(1.dp, Color(0xFFE879F9).copy(alpha = 0.5f), RoundedCornerShape(18.dp))
+            .padding(14.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(text = "✨", fontSize = 18.sp)
+                Spacer(modifier = Modifier.width(8.dp))
+                Column {
+                    Text(
+                        text = jalaliDate.dayOfWeekSimple + " " + jalaliDate.dayPersian + " " + jalaliDate.monthName,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Black,
+                        color = Color.White
+                    )
+                    Text(
+                        text = "امواج شفق قطبی (Aurora Plasma)",
+                        fontSize = 9.sp,
+                        color = Color(0xFFF5D0FE)
+                    )
+                }
+            }
+            Surface(
+                shape = RoundedCornerShape(10.dp),
+                color = Color(0x66000000),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0x66E879F9))
+            ) {
+                Text(
+                    text = jalaliDate.timePersian,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF99F6E4),
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 5.dp)
+                )
+            }
+        }
+    }
+}
+
+/** 13. Cyber Gold (PRO - Animated Rotating Sun) **/
+@Composable
+fun CyberGoldLivePreview(jalaliDate: JalaliDateInfo) {
+    val infTransition = rememberInfiniteTransition(label = "sun")
+    val sunAngle by infTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 360f,
+        animationSpec = infiniteRepeatable(tween(12000, easing = LinearEasing)),
+        label = "sunRot"
+    )
+    val sunPulse by infTransition.animateFloat(
+        initialValue = 0.95f,
+        targetValue = 1.15f,
+        animationSpec = infiniteRepeatable(tween(2000, easing = FastOutSlowInEasing), RepeatMode.Reverse),
+        label = "sunPulse"
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(18.dp))
+            .background(Color(0xFF0F131D))
+            .border(1.dp, Color(0xFFF59E0B).copy(alpha = 0.6f), RoundedCornerShape(18.dp))
+            .padding(14.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Box(
+                    modifier = Modifier
+                        .size(38.dp)
+                        .clip(CircleShape)
+                        .background(Color(0xFFF59E0B).copy(alpha = 0.2f))
+                        .border(1.dp, Color(0xFFF59E0B).copy(alpha = 0.5f), CircleShape),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "☀️",
+                        fontSize = 18.sp,
+                        modifier = Modifier
+                            .rotate(sunAngle)
+                            .scale(sunPulse)
+                    )
+                }
+                Spacer(modifier = Modifier.width(10.dp))
+                Column {
+                    Text(
+                        text = jalaliDate.dayPersian + " " + jalaliDate.monthName,
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Black,
+                        color = Color(0xFFFDE68A)
+                    )
+                    Text(
+                        text = "SOLAR GOLD ☀️ • " + jalaliDate.dayOfWeekSimple,
+                        fontSize = 9.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFFF59E0B)
+                    )
+                }
+            }
+            Surface(
+                shape = RoundedCornerShape(10.dp),
+                color = Color(0xFF451A03).copy(alpha = 0.6f),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFF59E0B))
+            ) {
+                Text(
+                    text = jalaliDate.timePersian,
+                    fontSize = 13.sp,
+                    fontWeight = FontWeight.Black,
+                    color = Color(0xFFFDE047),
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 5.dp)
+                )
+            }
+        }
+    }
+}
+
+/** 14. Diamond Prism (PRO - Diamond Shimmer) **/
+@Composable
+fun DiamondPrismLivePreview(jalaliDate: JalaliDateInfo) {
+    val infTransition = rememberInfiniteTransition(label = "diamond")
+    val shimmerX by infTransition.animateFloat(
+        initialValue = -150f,
+        targetValue = 400f,
+        animationSpec = infiniteRepeatable(tween(3000, easing = LinearEasing)),
+        label = "shimmer"
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(18.dp))
+            .background(Color(0xFF07172C))
+            .border(1.dp, Color(0xFF38BDF8).copy(alpha = 0.6f), RoundedCornerShape(18.dp))
+            .padding(14.dp)
+    ) {
+        Canvas(modifier = Modifier.matchParentSize()) {
+            drawRect(
+                brush = Brush.linearGradient(
+                    listOf(Color.Transparent, Color(0x3338BDF8), Color.Transparent),
+                    start = Offset(shimmerX, 0f),
+                    end = Offset(shimmerX + 80f, size.height)
+                )
+            )
+        }
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(text = "💎", fontSize = 18.sp)
+                Spacer(modifier = Modifier.width(8.dp))
+                Column {
+                    Text(
+                        text = jalaliDate.dayOfWeekSimple + " " + jalaliDate.dayPersian + " " + jalaliDate.monthName,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Black,
+                        color = Color.White
+                    )
+                    Text(
+                        text = "منشور الماس کریستال (Diamond Prism)",
+                        fontSize = 9.sp,
+                        color = Color(0xFFBAE6FD)
+                    )
+                }
+            }
+            Surface(
+                shape = RoundedCornerShape(10.dp),
+                color = Color(0x66082F49),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFF38BDF8))
+            ) {
+                Text(
+                    text = jalaliDate.timePersian,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF7DD3FC),
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 5.dp)
+                )
+            }
+        }
+    }
+}
+
+/** 15. Executive Leather (PRO) **/
+@Composable
+fun ExecutiveLeatherLivePreview(jalaliDate: JalaliDateInfo) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .background(Color(0xFF1C1917))
+            .border(1.dp, Color(0xFFD97706), RoundedCornerShape(16.dp))
+            .padding(14.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(text = "💼", fontSize = 18.sp)
+                Spacer(modifier = Modifier.width(8.dp))
+                Column {
+                    Text(
+                        text = jalaliDate.dayOfWeekSimple + " " + jalaliDate.dayPersian + " " + jalaliDate.monthName,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Black,
+                        color = Color(0xFFF5F5F4)
+                    )
+                    Text(
+                        text = "چرم ناپا و برنز دست‌ساز",
+                        fontSize = 9.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFFD97706)
+                    )
+                }
+            }
+            Surface(
+                shape = RoundedCornerShape(8.dp),
+                color = Color(0xFF292524),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFD97706).copy(alpha = 0.5f))
+            ) {
+                Text(
+                    text = jalaliDate.timePersian,
+                    fontSize = 13.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFFFBBF24),
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                )
+            }
+        }
+    }
+}
+
+/** 16. Analog Celestial (PRO) **/
+@Composable
+fun AnalogCelestialLivePreview(jalaliDate: JalaliDateInfo) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(18.dp))
+            .background(Color(0xFF0B1120))
+            .border(1.dp, Color(0xFFF59E0B).copy(alpha = 0.5f), RoundedCornerShape(18.dp))
+            .padding(14.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(text = "👑", fontSize = 18.sp)
+                Spacer(modifier = Modifier.width(8.dp))
+                Column {
+                    Text(
+                        text = jalaliDate.dayOfWeekSimple + " " + jalaliDate.dayPersian + " " + jalaliDate.monthName,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Black,
+                        color = Color.White
+                    )
+                    Text(
+                        text = "داشبورد سلطنتی زمان و تقویم",
+                        fontSize = 9.sp,
+                        color = Color(0xFFFDE68A)
+                    )
+                }
+            }
+            Surface(
+                shape = RoundedCornerShape(10.dp),
+                color = Color(0x660284C7),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFF38BDF8))
+            ) {
+                Text(
+                    text = jalaliDate.timePersian,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF7DD3FC),
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 5.dp)
+                )
+            }
+        }
+    }
+}
+
+/** 17. Hologram Grid (PRO - Radar Scanner) **/
+@Composable
+fun HologramGridLivePreview(jalaliDate: JalaliDateInfo) {
+    val infTransition = rememberInfiniteTransition(label = "radar")
+    val scanOffset by infTransition.animateFloat(
+        initialValue = -50f,
+        targetValue = 350f,
+        animationSpec = infiniteRepeatable(tween(2500, easing = LinearEasing)),
+        label = "scan"
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .background(Color(0xFF04121F))
+            .border(1.dp, Color(0xFF00F0FF), RoundedCornerShape(16.dp))
+            .padding(14.dp)
+    ) {
+        Canvas(modifier = Modifier.matchParentSize()) {
+            drawLine(
+                color = Color(0xFF00F0FF).copy(alpha = 0.5f),
+                start = Offset(scanOffset, 0f),
+                end = Offset(scanOffset, size.height),
+                strokeWidth = 2f
+            )
+        }
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(text = "🌐", fontSize = 18.sp)
+                Spacer(modifier = Modifier.width(8.dp))
+                Column {
+                    Text(
+                        text = jalaliDate.dayPersian + " " + jalaliDate.monthName,
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Black,
+                        color = Color.White
+                    )
+                    Text(
+                        text = "رادار سایبرپانک • " + jalaliDate.dayOfWeekSimple,
+                        fontSize = 9.sp,
+                        color = Color(0xFF00F0FF)
+                    )
+                }
+            }
+            Surface(
+                shape = RoundedCornerShape(8.dp),
+                color = Color(0x66000000),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFF00F0FF).copy(alpha = 0.5f))
+            ) {
+                Text(
+                    text = jalaliDate.timePersian,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF00F0FF),
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                )
+            }
+        }
+    }
+}
+
+/** 18. Royal Emerald (PRO) **/
+@Composable
+fun RoyalEmeraldLivePreview(jalaliDate: JalaliDateInfo) {
+    val infTransition = rememberInfiniteTransition(label = "emerald")
+    val jewelAlpha by infTransition.animateFloat(
+        initialValue = 0.6f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(tween(2200, easing = FastOutSlowInEasing), RepeatMode.Reverse),
+        label = "jewel"
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(18.dp))
+            .background(Color(0xFF064E3B))
+            .border(1.dp, Color(0xFFFBBF24).copy(alpha = jewelAlpha), RoundedCornerShape(18.dp))
+            .padding(14.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(text = "⚜️", fontSize = 18.sp)
+                Spacer(modifier = Modifier.width(8.dp))
+                Column {
+                    Text(
+                        text = jalaliDate.dayOfWeekSimple + " " + jalaliDate.dayPersian + " " + jalaliDate.monthName,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Black,
+                        color = Color.White
+                    )
+                    Text(
+                        text = "زمرد سلطنتی VIP",
+                        fontSize = 9.sp,
+                        color = Color(0xFF6EE7B7)
+                    )
+                }
+            }
+            Surface(
+                shape = RoundedCornerShape(10.dp),
+                color = Color(0x66022C22),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFFBBF24))
+            ) {
+                Text(
+                    text = jalaliDate.timePersian,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFFFDE68A),
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 5.dp)
+                )
+            }
+        }
+    }
+}
+
+/** 19. Frosted Liquid (PRO - Floating Bubbles) **/
+@Composable
+fun FrostedLiquidLivePreview(jalaliDate: JalaliDateInfo) {
+    val infTransition = rememberInfiniteTransition(label = "bubbles")
+    val b1Offset by infTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = -12f,
+        animationSpec = infiniteRepeatable(tween(2800, easing = FastOutSlowInEasing), RepeatMode.Reverse),
+        label = "b1"
+    )
+    val b2Offset by infTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 14f,
+        animationSpec = infiniteRepeatable(tween(3600, easing = FastOutSlowInEasing), RepeatMode.Reverse),
+        label = "b2"
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(18.dp))
+            .background(Color(0x33FFFFFF))
+            .border(1.dp, Color(0x66FFFFFF), RoundedCornerShape(18.dp))
+            .padding(14.dp)
+    ) {
+        Canvas(modifier = Modifier.matchParentSize()) {
+            drawCircle(
+                color = Color.White.copy(alpha = 0.25f),
+                radius = 18f,
+                center = Offset(size.width * 0.2f, size.height * 0.4f + b1Offset)
+            )
+            drawCircle(
+                color = Color.White.copy(alpha = 0.18f),
+                radius = 28f,
+                center = Offset(size.width * 0.75f, size.height * 0.6f + b2Offset)
+            )
+            drawCircle(
+                color = Color.White.copy(alpha = 0.3f),
+                radius = 12f,
+                center = Offset(size.width * 0.85f, size.height * 0.25f + b1Offset)
+            )
+        }
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(text = "🫧", fontSize = 18.sp)
+                Spacer(modifier = Modifier.width(8.dp))
+                Column {
+                    Text(
+                        text = jalaliDate.dayPersian + " " + jalaliDate.monthName,
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Black,
+                        color = Color.White
+                    )
+                    Text(
+                        text = "حباب‌های مایع ژلاتینی • " + jalaliDate.dayOfWeekSimple,
+                        fontSize = 9.sp,
+                        color = Color(0xFFBAE6FD)
+                    )
+                }
+            }
+            Surface(
+                shape = RoundedCornerShape(10.dp),
+                color = Color(0x44000000)
+            ) {
+                Text(
+                    text = jalaliDate.timePersian,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 5.dp)
+                )
+            }
+        }
+    }
+}
+
+/** 20. Titanium Chronos (PRO - Rotating Dial) **/
+@Composable
+fun TitaniumChronosLivePreview(jalaliDate: JalaliDateInfo) {
+    val infTransition = rememberInfiniteTransition(label = "dial")
+    val dialAngle by infTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 360f,
+        animationSpec = infiniteRepeatable(tween(14000, easing = LinearEasing)),
+        label = "dialRot"
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .background(Color(0xFF1E293B))
+            .border(1.dp, Color(0xFF94A3B8), RoundedCornerShape(16.dp))
+            .padding(14.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = "⏱️",
+                    fontSize = 18.sp,
+                    modifier = Modifier.rotate(dialAngle)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Column {
+                    Text(
+                        text = jalaliDate.dayOfWeekSimple + " " + jalaliDate.dayPersian + " " + jalaliDate.monthName,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Black,
+                        color = Color.White
+                    )
+                    Text(
+                        text = "کرونومتر تیتانیوم فضایی",
+                        fontSize = 9.sp,
+                        color = Color(0xFF94A3B8)
+                    )
+                }
+            }
+            Surface(
+                shape = RoundedCornerShape(8.dp),
+                color = Color(0x55000000),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFF94A3B8).copy(alpha = 0.5f))
+            ) {
+                Text(
+                    text = jalaliDate.timePersian,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFFE2E8F0),
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
                 )
             }
         }
