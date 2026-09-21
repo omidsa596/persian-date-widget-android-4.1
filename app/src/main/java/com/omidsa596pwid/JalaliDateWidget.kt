@@ -455,32 +455,114 @@ class NeonCyanCardWidget : GlanceAppWidget() {
                 Box(
                     modifier = GlanceModifier
                         .fillMaxSize()
-                        .cornerRadius(20.dp)
+                        .cornerRadius(22.dp)
                         .background(Color(0xFF00F0FF))
-                        .padding(1.dp)
+                        .padding(1.5.dp)
                         .then(tapModifier)
                 ) {
                     Box(
                         modifier = GlanceModifier
                             .fillMaxSize()
-                            .cornerRadius(19.dp)
-                            .background(Color(0xF008131E))
-                            .padding(horizontal = 14.dp, vertical = 6.dp),
+                            .cornerRadius(20.5.dp)
+                            .background(Color(0xFF030D18))
+                            .padding(horizontal = 10.dp, vertical = 6.dp),
                         contentAlignment = Alignment.Center
                     ) {
                         Row(
                             modifier = GlanceModifier.fillMaxSize(),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Text(
-                                text = "⚡ ${jalaliDate.timePersian}",
-                                style = TextStyle(color = ColorProvider(Color(0xFF00F0FF)), fontSize = 14.sp, fontWeight = FontWeight.Bold)
-                            )
+                            // ساعت نئونی سمت چپ
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Box(
+                                    modifier = GlanceModifier
+                                        .cornerRadius(12.dp)
+                                        .background(Color(0xFF0891B2))
+                                        .padding(1.dp)
+                                ) {
+                                    Box(
+                                        modifier = GlanceModifier
+                                            .cornerRadius(11.dp)
+                                            .background(Color(0xFF062133))
+                                            .padding(horizontal = 8.dp, vertical = 3.dp)
+                                    ) {
+                                        Text(
+                                            text = "⚡ ${jalaliDate.timePersian}",
+                                            style = TextStyle(color = ColorProvider(Color(0xFF00F0FF)), fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                                        )
+                                    }
+                                }
+                                Spacer(modifier = GlanceModifier.height(3.dp))
+                                Text(
+                                    text = jalaliDate.gregorianDateString,
+                                    style = TextStyle(color = ColorProvider(Color(0xFF67E8F9)), fontSize = 9.sp)
+                                )
+                            }
+
+                            Spacer(modifier = GlanceModifier.width(6.dp))
+
+                            // خط جداکننده فیروزه‌ای
+                            Box(modifier = GlanceModifier.width(1.dp).height(30.dp).background(Color(0x5500F0FF))) {}
+
                             Spacer(modifier = GlanceModifier.defaultWeight())
-                            Text(
-                                text = "${jalaliDate.dayOfWeekSimple} ${jalaliDate.dayPersian} ${jalaliDate.monthName}",
-                                style = TextStyle(color = ColorProvider(Color.White), fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                            )
+
+                            // مرکز: نشان سایبر و نام روز
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Box(
+                                        modifier = GlanceModifier
+                                            .cornerRadius(6.dp)
+                                            .background(Color(0xFF0891B2))
+                                            .padding(horizontal = 5.dp, vertical = 1.dp)
+                                    ) {
+                                        Text(
+                                            text = "CYBER ⚡",
+                                            style = TextStyle(color = ColorProvider(Color(0xFFE0F2FE)), fontSize = 8.sp, fontWeight = FontWeight.Bold)
+                                        )
+                                    }
+                                    Spacer(modifier = GlanceModifier.width(4.dp))
+                                    Text(
+                                        text = jalaliDate.dayOfWeekSimple,
+                                        style = TextStyle(color = ColorProvider(Color.White), fontSize = 15.sp, fontWeight = FontWeight.Bold)
+                                    )
+                                }
+                                Spacer(modifier = GlanceModifier.height(2.dp))
+                                Text(
+                                    text = "سال ${jalaliDate.yearPersian}",
+                                    style = TextStyle(color = ColorProvider(Color(0xFF67E8F9)), fontSize = 11.sp)
+                                )
+                            }
+
+                            Spacer(modifier = GlanceModifier.defaultWeight())
+
+                            // سمت راست: مدالیون نئونی روز
+                            Box(
+                                modifier = GlanceModifier
+                                    .width(46.dp)
+                                    .height(46.dp)
+                                    .cornerRadius(14.dp)
+                                    .background(Color(0xFF00F0FF))
+                                    .padding(1.dp)
+                            ) {
+                                Box(
+                                    modifier = GlanceModifier
+                                        .fillMaxSize()
+                                        .cornerRadius(13.dp)
+                                        .background(Color(0xFF063044)),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                        Text(
+                                            text = jalaliDate.dayPersian,
+                                            style = TextStyle(color = ColorProvider(Color.White), fontSize = 19.sp, fontWeight = FontWeight.Bold)
+                                        )
+                                        Text(
+                                            text = jalaliDate.monthName,
+                                            style = TextStyle(color = ColorProvider(Color(0xFF67E8F9)), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                                        )
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -500,25 +582,47 @@ class CalendarTileWidget : GlanceAppWidget() {
                 Box(
                     modifier = GlanceModifier
                         .fillMaxSize()
-                        .cornerRadius(22.dp)
-                        .background(Color(0xFF1E293B))
-                        .padding(10.dp)
-                        .then(tapModifier),
-                    contentAlignment = Alignment.Center
+                        .cornerRadius(24.dp)
+                        .background(Color(0xFFF59E0B))
+                        .padding(1.5.dp)
+                        .then(tapModifier)
                 ) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(
-                            text = jalaliDate.dayOfWeekSimple,
-                            style = TextStyle(color = ColorProvider(Color(0xFFF59E0B)), fontSize = 14.sp, fontWeight = FontWeight.Bold)
-                        )
-                        Text(
-                            text = jalaliDate.dayPersian,
-                            style = TextStyle(color = ColorProvider(Color.White), fontSize = 38.sp, fontWeight = FontWeight.Bold)
-                        )
-                        Text(
-                            text = "${jalaliDate.monthName} ${jalaliDate.yearPersian}",
-                            style = TextStyle(color = ColorProvider(Color(0xFF94A3B8)), fontSize = 13.sp, fontWeight = FontWeight.Bold)
-                        )
+                    Box(
+                        modifier = GlanceModifier
+                            .fillMaxSize()
+                            .cornerRadius(22.5.dp)
+                            .background(Color(0xFF1E293B))
+                            .padding(12.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Box(
+                                modifier = GlanceModifier
+                                    .cornerRadius(8.dp)
+                                    .background(Color(0xFFB45309))
+                                    .padding(horizontal = 12.dp, vertical = 3.dp)
+                            ) {
+                                Text(
+                                    text = jalaliDate.dayOfWeekSimple,
+                                    style = TextStyle(color = ColorProvider(Color(0xFFFEF3C7)), fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                                )
+                            }
+                            Spacer(modifier = GlanceModifier.height(4.dp))
+                            Text(
+                                text = jalaliDate.dayPersian,
+                                style = TextStyle(color = ColorProvider(Color.White), fontSize = 42.sp, fontWeight = FontWeight.Bold)
+                            )
+                            Spacer(modifier = GlanceModifier.height(2.dp))
+                            Text(
+                                text = "${jalaliDate.monthName} ${jalaliDate.yearPersian}",
+                                style = TextStyle(color = ColorProvider(Color(0xFFFDE68A)), fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                            )
+                            Spacer(modifier = GlanceModifier.height(4.dp))
+                            Text(
+                                text = "🕒 ${jalaliDate.timePersian}",
+                                style = TextStyle(color = ColorProvider(Color(0xFF94A3B8)), fontSize = 11.sp)
+                            )
+                        }
                     }
                 }
             }
@@ -534,40 +638,154 @@ class LuxuryDarkWidget : GlanceAppWidget() {
 
         provideContent {
             GlanceTheme {
+                // کادر طلایی براق بیرونی
                 Box(
                     modifier = GlanceModifier
                         .fillMaxSize()
-                        .cornerRadius(20.dp)
-                        .background(Color(0xFFF59E0B))
+                        .cornerRadius(22.dp)
+                        .background(Color(0xFFEAB308))
                         .padding(1.5.dp)
                         .then(tapModifier)
                 ) {
+                    // پس‌زمینه کریستال مشکی آبسیدین
                     Box(
                         modifier = GlanceModifier
                             .fillMaxSize()
-                            .cornerRadius(18.5.dp)
-                            .background(Color(0xF610141D))
-                            .padding(horizontal = 14.dp, vertical = 6.dp),
+                            .cornerRadius(20.5.dp)
+                            .background(Color(0xFF0F1218))
+                            .padding(horizontal = 10.dp, vertical = 6.dp),
                         contentAlignment = Alignment.Center
                     ) {
                         Row(
                             modifier = GlanceModifier.fillMaxSize(),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Text(
-                                text = "✦ ${jalaliDate.timePersianSpaced}",
-                                style = TextStyle(color = ColorProvider(Color(0xFFFDE68A)), fontSize = 15.sp, fontWeight = FontWeight.Bold)
-                            )
-                            Spacer(modifier = GlanceModifier.defaultWeight())
+                            // ۱. سمت چپ: کپسول ساعت و تاریخ میلادی
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Box(
+                                    modifier = GlanceModifier
+                                        .cornerRadius(12.dp)
+                                        .background(Color(0xFFB45309))
+                                        .padding(1.dp)
+                                ) {
+                                    Box(
+                                        modifier = GlanceModifier
+                                            .cornerRadius(11.dp)
+                                            .background(Color(0xFF1E1710))
+                                            .padding(horizontal = 8.dp, vertical = 3.dp)
+                                    ) {
+                                        Text(
+                                            text = "🕒 ${jalaliDate.timePersian}",
+                                            style = TextStyle(
+                                                color = ColorProvider(Color(0xFFFDE68A)),
+                                                fontSize = 13.sp,
+                                                fontWeight = FontWeight.Bold
+                                            )
+                                        )
+                                    }
+                                }
+                                Spacer(modifier = GlanceModifier.height(3.dp))
                                 Text(
-                                    text = jalaliDate.dayOfWeekSimple,
-                                    style = TextStyle(color = ColorProvider(Color.White), fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                                    text = "✦ ${jalaliDate.gregorianDateString}",
+                                    style = TextStyle(
+                                        color = ColorProvider(Color(0xFFD4AF37)),
+                                        fontSize = 9.sp,
+                                        fontWeight = FontWeight.Normal
+                                    )
                                 )
+                            }
+
+                            Spacer(modifier = GlanceModifier.width(6.dp))
+
+                            // ۲. خط جداکننده عمودی طلایی
+                            Box(
+                                modifier = GlanceModifier
+                                    .width(1.dp)
+                                    .height(32.dp)
+                                    .background(Color(0x55EAB308))
+                            ) {}
+
+                            Spacer(modifier = GlanceModifier.defaultWeight())
+
+                            // ۳. بخش میانی: برچسب PRO + نام روز + سال خورشیدی
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Box(
+                                        modifier = GlanceModifier
+                                            .cornerRadius(6.dp)
+                                            .background(Color(0xFFB45309))
+                                            .padding(horizontal = 5.dp, vertical = 1.dp)
+                                    ) {
+                                        Text(
+                                            text = "👑 PRO",
+                                            style = TextStyle(
+                                                color = ColorProvider(Color(0xFFFEF3C7)),
+                                                fontSize = 9.sp,
+                                                fontWeight = FontWeight.Bold
+                                            )
+                                        )
+                                    }
+                                    Spacer(modifier = GlanceModifier.width(4.dp))
+                                    Text(
+                                        text = jalaliDate.dayOfWeekSimple,
+                                        style = TextStyle(
+                                            color = ColorProvider(Color.White),
+                                            fontSize = 15.sp,
+                                            fontWeight = FontWeight.Bold
+                                        )
+                                    )
+                                }
+                                Spacer(modifier = GlanceModifier.height(2.dp))
                                 Text(
-                                    text = "${jalaliDate.dayPersian} ${jalaliDate.monthName} ${jalaliDate.yearPersian}",
-                                    style = TextStyle(color = ColorProvider(Color(0xFFFBBF24)), fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                                    text = "سال ${jalaliDate.yearPersian} خورشیدی",
+                                    style = TextStyle(
+                                        color = ColorProvider(Color(0xFFFBBF24)),
+                                        fontSize = 11.sp,
+                                        fontWeight = FontWeight.Normal
+                                    )
                                 )
+                            }
+
+                            Spacer(modifier = GlanceModifier.defaultWeight())
+
+                            // ۴. سمت راست: مدالیون طلایی روز (عدد بزرگ + نام ماه)
+                            Box(
+                                modifier = GlanceModifier
+                                    .width(46.dp)
+                                    .height(46.dp)
+                                    .cornerRadius(14.dp)
+                                    .background(Color(0xFFF59E0B))
+                                    .padding(1.dp)
+                            ) {
+                                Box(
+                                    modifier = GlanceModifier
+                                        .fillMaxSize()
+                                        .cornerRadius(13.dp)
+                                        .background(Color(0xFF78350F)),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ) {
+                                        Text(
+                                            text = jalaliDate.dayPersian,
+                                            style = TextStyle(
+                                                color = ColorProvider(Color(0xFFFFFBEB)),
+                                                fontSize = 20.sp,
+                                                fontWeight = FontWeight.Bold
+                                            )
+                                        )
+                                        Text(
+                                            text = jalaliDate.monthName,
+                                            style = TextStyle(
+                                                color = ColorProvider(Color(0xFFFDE68A)),
+                                                fontSize = 9.sp,
+                                                fontWeight = FontWeight.Bold
+                                            )
+                                        )
+                                    }
+                                }
                             }
                         }
                     }
@@ -588,30 +806,88 @@ class AuroraGlassWidget : GlanceAppWidget() {
                 Box(
                     modifier = GlanceModifier
                         .fillMaxSize()
-                        .cornerRadius(20.dp)
-                        .background(Color(0xF018132B))
-                        .padding(horizontal = 14.dp, vertical = 6.dp)
-                        .then(tapModifier),
-                    contentAlignment = Alignment.Center
+                        .cornerRadius(22.dp)
+                        .background(Color(0xFFC084FC))
+                        .padding(1.5.dp)
+                        .then(tapModifier)
                 ) {
-                    Row(
-                        modifier = GlanceModifier.fillMaxSize(),
-                        verticalAlignment = Alignment.CenterVertically
+                    Box(
+                        modifier = GlanceModifier
+                            .fillMaxSize()
+                            .cornerRadius(20.5.dp)
+                            .background(Color(0xFF160E2E))
+                            .padding(horizontal = 10.dp, vertical = 6.dp),
+                        contentAlignment = Alignment.Center
                     ) {
-                        Text(
-                            text = "✨ ${jalaliDate.timePersian}",
-                            style = TextStyle(color = ColorProvider(Color(0xFFC084FC)), fontSize = 14.sp, fontWeight = FontWeight.Bold)
-                        )
-                        Spacer(modifier = GlanceModifier.defaultWeight())
-                        Text(
-                            text = "${jalaliDate.dayOfWeekSimple} ${jalaliDate.dayPersian} ${jalaliDate.monthName} ${jalaliDate.yearPersian}",
-                            style = TextStyle(color = ColorProvider(Color.White), fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                        )
-                        Spacer(modifier = GlanceModifier.defaultWeight())
-                        Text(
-                            text = jalaliDate.gregorianDateString,
-                            style = TextStyle(color = ColorProvider(Color(0xFF38BDF8)), fontSize = 11.sp)
-                        )
+                        Row(
+                            modifier = GlanceModifier.fillMaxSize(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Box(
+                                    modifier = GlanceModifier
+                                        .cornerRadius(12.dp)
+                                        .background(Color(0xFF7E22CE))
+                                        .padding(horizontal = 8.dp, vertical = 3.dp)
+                                ) {
+                                    Text(
+                                        text = "✨ ${jalaliDate.timePersian}",
+                                        style = TextStyle(color = ColorProvider(Color(0xFFE9D5FF)), fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                                    )
+                                }
+                                Spacer(modifier = GlanceModifier.height(2.dp))
+                                Text(
+                                    text = jalaliDate.gregorianDateString,
+                                    style = TextStyle(color = ColorProvider(Color(0xFF38BDF8)), fontSize = 9.sp)
+                                )
+                            }
+
+                            Spacer(modifier = GlanceModifier.defaultWeight())
+
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Text(text = "🌌 ", style = TextStyle(fontSize = 12.sp))
+                                    Text(
+                                        text = jalaliDate.dayOfWeekSimple,
+                                        style = TextStyle(color = ColorProvider(Color.White), fontSize = 15.sp, fontWeight = FontWeight.Bold)
+                                    )
+                                }
+                                Text(
+                                    text = "شفق قطبی • سال ${jalaliDate.yearPersian}",
+                                    style = TextStyle(color = ColorProvider(Color(0xFFC084FC)), fontSize = 10.sp)
+                                )
+                            }
+
+                            Spacer(modifier = GlanceModifier.defaultWeight())
+
+                            Box(
+                                modifier = GlanceModifier
+                                    .width(46.dp)
+                                    .height(46.dp)
+                                    .cornerRadius(14.dp)
+                                    .background(Color(0xFFC084FC))
+                                    .padding(1.dp)
+                            ) {
+                                Box(
+                                    modifier = GlanceModifier
+                                        .fillMaxSize()
+                                        .cornerRadius(13.dp)
+                                        .background(Color(0xFF581C87)),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                        Text(
+                                            text = jalaliDate.dayPersian,
+                                            style = TextStyle(color = ColorProvider(Color.White), fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                                        )
+                                        Text(
+                                            text = jalaliDate.monthName,
+                                            style = TextStyle(color = ColorProvider(Color(0xFFE9D5FF)), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                                        )
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -631,29 +907,42 @@ class CyberGold2x2Widget : GlanceAppWidget() {
                     modifier = GlanceModifier
                         .fillMaxSize()
                         .cornerRadius(24.dp)
-                        .background(Color(0xFF161922))
-                        .padding(12.dp)
-                        .then(tapModifier),
-                    contentAlignment = Alignment.Center
+                        .background(Color(0xFFF59E0B))
+                        .padding(1.5.dp)
+                        .then(tapModifier)
                 ) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(
-                            text = jalaliDate.timePersianSpaced,
-                            style = TextStyle(color = ColorProvider(Color(0xFFFBBF24)), fontSize = 24.sp, fontWeight = FontWeight.Bold)
-                        )
-                        Spacer(modifier = GlanceModifier.height(4.dp))
-                        Text(
-                            text = jalaliDate.dayOfWeekSimple,
-                            style = TextStyle(color = ColorProvider(Color.White), fontSize = 14.sp, fontWeight = FontWeight.Bold)
-                        )
-                        Text(
-                            text = "${jalaliDate.dayPersian} ${jalaliDate.monthName} ${jalaliDate.yearPersian}",
-                            style = TextStyle(color = ColorProvider(Color(0xFFFDE68A)), fontSize = 15.sp, fontWeight = FontWeight.Bold)
-                        )
-                        Text(
-                            text = jalaliDate.gregorianDateString,
-                            style = TextStyle(color = ColorProvider(Color(0x88FFFFFF)), fontSize = 10.sp)
-                        )
+                    Box(
+                        modifier = GlanceModifier
+                            .fillMaxSize()
+                            .cornerRadius(22.5.dp)
+                            .background(Color(0xFF141720))
+                            .padding(12.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Text(text = "☀️ ", style = TextStyle(fontSize = 16.sp))
+                                Text(
+                                    text = jalaliDate.timePersianSpaced,
+                                    style = TextStyle(color = ColorProvider(Color(0xFFFBBF24)), fontSize = 24.sp, fontWeight = FontWeight.Bold)
+                                )
+                            }
+                            Spacer(modifier = GlanceModifier.height(4.dp))
+                            Box(modifier = GlanceModifier.fillMaxWidth().height(1.dp).background(Color(0x44F59E0B))) {}
+                            Spacer(modifier = GlanceModifier.height(4.dp))
+                            Text(
+                                text = jalaliDate.dayOfWeekSimple,
+                                style = TextStyle(color = ColorProvider(Color.White), fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                            )
+                            Text(
+                                text = "${jalaliDate.dayPersian} ${jalaliDate.monthName} ${jalaliDate.yearPersian}",
+                                style = TextStyle(color = ColorProvider(Color(0xFFFDE68A)), fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                            )
+                            Text(
+                                text = jalaliDate.gregorianDateString,
+                                style = TextStyle(color = ColorProvider(Color(0x88FFFFFF)), fontSize = 10.sp)
+                            )
+                        }
                     }
                 }
             }
@@ -672,32 +961,84 @@ class DiamondPrismWidget : GlanceAppWidget() {
                 Box(
                     modifier = GlanceModifier
                         .fillMaxSize()
-                        .cornerRadius(20.dp)
+                        .cornerRadius(22.dp)
                         .background(Color(0xFF38BDF8))
-                        .padding(1.dp)
+                        .padding(1.5.dp)
                         .then(tapModifier)
                 ) {
                     Box(
                         modifier = GlanceModifier
                             .fillMaxSize()
-                            .cornerRadius(19.dp)
-                            .background(Color(0xF00A192F))
-                            .padding(horizontal = 14.dp, vertical = 6.dp),
+                            .cornerRadius(20.5.dp)
+                            .background(Color(0xFF08192E))
+                            .padding(horizontal = 10.dp, vertical = 6.dp),
                         contentAlignment = Alignment.Center
                     ) {
                         Row(
                             modifier = GlanceModifier.fillMaxSize(),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Text(
-                                text = "💎 ${jalaliDate.timePersian}",
-                                style = TextStyle(color = ColorProvider(Color(0xFF7DD3FC)), fontSize = 14.sp, fontWeight = FontWeight.Bold)
-                            )
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Box(
+                                    modifier = GlanceModifier
+                                        .cornerRadius(12.dp)
+                                        .background(Color(0xFF0284C7))
+                                        .padding(horizontal = 8.dp, vertical = 3.dp)
+                                ) {
+                                    Text(
+                                        text = "💎 ${jalaliDate.timePersian}",
+                                        style = TextStyle(color = ColorProvider(Color(0xFFE0F2FE)), fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                                    )
+                                }
+                                Spacer(modifier = GlanceModifier.height(2.dp))
+                                Text(
+                                    text = jalaliDate.gregorianDateString,
+                                    style = TextStyle(color = ColorProvider(Color(0xFF7DD3FC)), fontSize = 9.sp)
+                                )
+                            }
+
                             Spacer(modifier = GlanceModifier.defaultWeight())
-                            Text(
-                                text = "${jalaliDate.dayOfWeekSimple} ${jalaliDate.dayPersian} ${jalaliDate.monthName}",
-                                style = TextStyle(color = ColorProvider(Color.White), fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                            )
+
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Text(
+                                    text = jalaliDate.dayOfWeekSimple,
+                                    style = TextStyle(color = ColorProvider(Color.White), fontSize = 15.sp, fontWeight = FontWeight.Bold)
+                                )
+                                Text(
+                                    text = "منشور الماس • سال ${jalaliDate.yearPersian}",
+                                    style = TextStyle(color = ColorProvider(Color(0xFF7DD3FC)), fontSize = 10.sp)
+                                )
+                            }
+
+                            Spacer(modifier = GlanceModifier.defaultWeight())
+
+                            Box(
+                                modifier = GlanceModifier
+                                    .width(46.dp)
+                                    .height(46.dp)
+                                    .cornerRadius(14.dp)
+                                    .background(Color(0xFF38BDF8))
+                                    .padding(1.dp)
+                            ) {
+                                Box(
+                                    modifier = GlanceModifier
+                                        .fillMaxSize()
+                                        .cornerRadius(13.dp)
+                                        .background(Color(0xFF03446A)),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                        Text(
+                                            text = jalaliDate.dayPersian,
+                                            style = TextStyle(color = ColorProvider(Color.White), fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                                        )
+                                        Text(
+                                            text = jalaliDate.monthName,
+                                            style = TextStyle(color = ColorProvider(Color(0xFFBAE6FD)), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                                        )
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -717,25 +1058,38 @@ class ExecutiveLeatherWidget : GlanceAppWidget() {
                 Box(
                     modifier = GlanceModifier
                         .fillMaxSize()
-                        .cornerRadius(20.dp)
-                        .background(Color(0xFF181513))
-                        .padding(horizontal = 14.dp, vertical = 6.dp)
-                        .then(tapModifier),
-                    contentAlignment = Alignment.Center
+                        .cornerRadius(22.dp)
+                        .background(Color(0xFFD97706))
+                        .padding(1.5.dp)
+                        .then(tapModifier)
                 ) {
-                    Row(
-                        modifier = GlanceModifier.fillMaxSize(),
-                        verticalAlignment = Alignment.CenterVertically
+                    Box(
+                        modifier = GlanceModifier
+                            .fillMaxSize()
+                            .cornerRadius(20.5.dp)
+                            .background(Color(0xFF1C1917))
+                            .padding(horizontal = 10.dp, vertical = 6.dp),
+                        contentAlignment = Alignment.Center
                     ) {
-                        Text(
-                            text = jalaliDate.timePersian,
-                            style = TextStyle(color = ColorProvider(Color(0xFFD97706)), fontSize = 15.sp, fontWeight = FontWeight.Bold)
-                        )
-                        Spacer(modifier = GlanceModifier.defaultWeight())
-                        Text(
-                            text = "${jalaliDate.dayOfWeekSimple} ${jalaliDate.dayPersian} ${jalaliDate.monthName} ${jalaliDate.yearPersian}",
-                            style = TextStyle(color = ColorProvider(Color(0xFFF5F5F4)), fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                        )
+                        Row(
+                            modifier = GlanceModifier.fillMaxSize(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = "⚜️ ${jalaliDate.timePersian}",
+                                style = TextStyle(color = ColorProvider(Color(0xFFFBBF24)), fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                            )
+                            Spacer(modifier = GlanceModifier.defaultWeight())
+                            Text(
+                                text = "${jalaliDate.dayOfWeekSimple} ${jalaliDate.dayPersian} ${jalaliDate.monthName} ${jalaliDate.yearPersian}",
+                                style = TextStyle(color = ColorProvider(Color(0xFFF5F5F4)), fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                            )
+                            Spacer(modifier = GlanceModifier.defaultWeight())
+                            Text(
+                                text = jalaliDate.gregorianDateString,
+                                style = TextStyle(color = ColorProvider(Color(0xFFA8A29E)), fontSize = 10.sp)
+                            )
+                        }
                     }
                 }
             }
@@ -755,32 +1109,40 @@ class AnalogCelestialWidget : GlanceAppWidget() {
                     modifier = GlanceModifier
                         .fillMaxSize()
                         .cornerRadius(26.dp)
-                        .background(Color(0xF50D1322))
-                        .padding(14.dp)
-                        .then(tapModifier),
-                    contentAlignment = Alignment.Center
+                        .background(Color(0xFFF59E0B))
+                        .padding(1.5.dp)
+                        .then(tapModifier)
                 ) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(
-                            text = "👑 داشبورد سلطنتی تقویم و زمان",
-                            style = TextStyle(color = ColorProvider(Color(0xFFFBBF24)), fontSize = 12.sp, fontWeight = FontWeight.Bold)
-                        )
-                        Spacer(modifier = GlanceModifier.height(4.dp))
-                        Text(
-                            text = "${jalaliDate.dayOfWeekSimple} ${jalaliDate.dayPersian} ${jalaliDate.monthName} ${jalaliDate.yearPersian}",
-                            style = TextStyle(color = ColorProvider(Color.White), fontSize = 19.sp, fontWeight = FontWeight.Bold)
-                        )
-                        Spacer(modifier = GlanceModifier.height(4.dp))
-                        Row(verticalAlignment = Alignment.CenterVertically) {
+                    Box(
+                        modifier = GlanceModifier
+                            .fillMaxSize()
+                            .cornerRadius(24.5.dp)
+                            .background(Color(0xF50D1322))
+                            .padding(14.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Text(
-                                text = "ساعت: ${jalaliDate.timePersianSpaced}",
-                                style = TextStyle(color = ColorProvider(Color(0xFF38BDF8)), fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                                text = "👑 داشبورد سلطنتی تقویم و زمان",
+                                style = TextStyle(color = ColorProvider(Color(0xFFFBBF24)), fontSize = 12.sp, fontWeight = FontWeight.Bold)
                             )
-                            Spacer(modifier = GlanceModifier.width(16.dp))
+                            Spacer(modifier = GlanceModifier.height(4.dp))
                             Text(
-                                text = jalaliDate.gregorianDateString,
-                                style = TextStyle(color = ColorProvider(Color(0xAAFFFFFF)), fontSize = 12.sp)
+                                text = "${jalaliDate.dayOfWeekSimple} ${jalaliDate.dayPersian} ${jalaliDate.monthName} ${jalaliDate.yearPersian}",
+                                style = TextStyle(color = ColorProvider(Color.White), fontSize = 19.sp, fontWeight = FontWeight.Bold)
                             )
+                            Spacer(modifier = GlanceModifier.height(4.dp))
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Text(
+                                    text = "ساعت: ${jalaliDate.timePersianSpaced}",
+                                    style = TextStyle(color = ColorProvider(Color(0xFF38BDF8)), fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                                )
+                                Spacer(modifier = GlanceModifier.width(16.dp))
+                                Text(
+                                    text = jalaliDate.gregorianDateString,
+                                    style = TextStyle(color = ColorProvider(Color(0xAAFFFFFF)), fontSize = 12.sp)
+                                )
+                            }
                         }
                     }
                 }
@@ -800,25 +1162,38 @@ class HologramGridWidget : GlanceAppWidget() {
                 Box(
                     modifier = GlanceModifier
                         .fillMaxSize()
-                        .cornerRadius(20.dp)
-                        .background(Color(0xF0051624))
-                        .padding(horizontal = 14.dp, vertical = 6.dp)
-                        .then(tapModifier),
-                    contentAlignment = Alignment.Center
+                        .cornerRadius(22.dp)
+                        .background(Color(0xFF00F0FF))
+                        .padding(1.5.dp)
+                        .then(tapModifier)
                 ) {
-                    Row(
-                        modifier = GlanceModifier.fillMaxSize(),
-                        verticalAlignment = Alignment.CenterVertically
+                    Box(
+                        modifier = GlanceModifier
+                            .fillMaxSize()
+                            .cornerRadius(20.5.dp)
+                            .background(Color(0xF0051624))
+                            .padding(horizontal = 10.dp, vertical = 6.dp),
+                        contentAlignment = Alignment.Center
                     ) {
-                        Text(
-                            text = "🌐 ${jalaliDate.timePersian}",
-                            style = TextStyle(color = ColorProvider(Color(0xFF00F0FF)), fontSize = 14.sp, fontWeight = FontWeight.Bold)
-                        )
-                        Spacer(modifier = GlanceModifier.defaultWeight())
-                        Text(
-                            text = "${jalaliDate.dayOfWeekSimple} ${jalaliDate.dayPersian} ${jalaliDate.monthName}",
-                            style = TextStyle(color = ColorProvider(Color.White), fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                        )
+                        Row(
+                            modifier = GlanceModifier.fillMaxSize(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = "🌐 ${jalaliDate.timePersian}",
+                                style = TextStyle(color = ColorProvider(Color(0xFF00F0FF)), fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                            )
+                            Spacer(modifier = GlanceModifier.defaultWeight())
+                            Text(
+                                text = "${jalaliDate.dayOfWeekSimple} ${jalaliDate.dayPersian} ${jalaliDate.monthName}",
+                                style = TextStyle(color = ColorProvider(Color.White), fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                            )
+                            Spacer(modifier = GlanceModifier.defaultWeight())
+                            Text(
+                                text = "HOLO",
+                                style = TextStyle(color = ColorProvider(Color(0xFF00F0FF)), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                            )
+                        }
                     }
                 }
             }
@@ -837,25 +1212,38 @@ class RoyalEmeraldWidget : GlanceAppWidget() {
                 Box(
                     modifier = GlanceModifier
                         .fillMaxSize()
-                        .cornerRadius(22.dp)
-                        .background(Color(0xFF064E3B))
-                        .padding(12.dp)
-                        .then(tapModifier),
-                    contentAlignment = Alignment.Center
+                        .cornerRadius(24.dp)
+                        .background(Color(0xFFD97706))
+                        .padding(1.5.dp)
+                        .then(tapModifier)
                 ) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(
-                            text = jalaliDate.dayOfWeekSimple,
-                            style = TextStyle(color = ColorProvider(Color(0xFFFDE68A)), fontSize = 14.sp, fontWeight = FontWeight.Bold)
-                        )
-                        Text(
-                            text = jalaliDate.dayPersian,
-                            style = TextStyle(color = ColorProvider(Color.White), fontSize = 34.sp, fontWeight = FontWeight.Bold)
-                        )
-                        Text(
-                            text = "${jalaliDate.monthName} ${jalaliDate.yearPersian}",
-                            style = TextStyle(color = ColorProvider(Color(0xFF6EE7B7)), fontSize = 13.sp, fontWeight = FontWeight.Bold)
-                        )
+                    Box(
+                        modifier = GlanceModifier
+                            .fillMaxSize()
+                            .cornerRadius(22.5.dp)
+                            .background(Color(0xFF064E3B))
+                            .padding(12.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text(
+                                text = "⚜️ ${jalaliDate.dayOfWeekSimple}",
+                                style = TextStyle(color = ColorProvider(Color(0xFFFDE68A)), fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                            )
+                            Text(
+                                text = jalaliDate.dayPersian,
+                                style = TextStyle(color = ColorProvider(Color.White), fontSize = 38.sp, fontWeight = FontWeight.Bold)
+                            )
+                            Text(
+                                text = "${jalaliDate.monthName} ${jalaliDate.yearPersian}",
+                                style = TextStyle(color = ColorProvider(Color(0xFF6EE7B7)), fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                            )
+                            Spacer(modifier = GlanceModifier.height(3.dp))
+                            Text(
+                                text = "🕒 ${jalaliDate.timePersian}",
+                                style = TextStyle(color = ColorProvider(Color(0xFFFDE68A)), fontSize = 11.sp)
+                            )
+                        }
                     }
                 }
             }
@@ -875,24 +1263,37 @@ class FrostedLiquidWidget : GlanceAppWidget() {
                     modifier = GlanceModifier
                         .fillMaxSize()
                         .cornerRadius(24.dp)
-                        .background(Color(0x40FFFFFF))
-                        .padding(horizontal = 14.dp, vertical = 6.dp)
-                        .then(tapModifier),
-                    contentAlignment = Alignment.Center
+                        .background(Color(0x88FFFFFF))
+                        .padding(1.5.dp)
+                        .then(tapModifier)
                 ) {
-                    Row(
-                        modifier = GlanceModifier.fillMaxSize(),
-                        verticalAlignment = Alignment.CenterVertically
+                    Box(
+                        modifier = GlanceModifier
+                            .fillMaxSize()
+                            .cornerRadius(22.5.dp)
+                            .background(Color(0x30FFFFFF))
+                            .padding(horizontal = 12.dp, vertical = 6.dp),
+                        contentAlignment = Alignment.Center
                     ) {
-                        Text(
-                            text = "🫧 ${jalaliDate.timePersian}",
-                            style = TextStyle(color = ColorProvider(Color(0xFFFBCFE8)), fontSize = 14.sp, fontWeight = FontWeight.Bold)
-                        )
-                        Spacer(modifier = GlanceModifier.defaultWeight())
-                        Text(
-                            text = "${jalaliDate.dayOfWeekSimple} ${jalaliDate.dayPersian} ${jalaliDate.monthName}",
-                            style = TextStyle(color = ColorProvider(Color.White), fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                        )
+                        Row(
+                            modifier = GlanceModifier.fillMaxSize(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = "🫧 ${jalaliDate.timePersian}",
+                                style = TextStyle(color = ColorProvider(Color(0xFFFBCFE8)), fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                            )
+                            Spacer(modifier = GlanceModifier.defaultWeight())
+                            Text(
+                                text = "${jalaliDate.dayOfWeekSimple} ${jalaliDate.dayPersian} ${jalaliDate.monthName}",
+                                style = TextStyle(color = ColorProvider(Color.White), fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                            )
+                            Spacer(modifier = GlanceModifier.defaultWeight())
+                            Text(
+                                text = "💧",
+                                style = TextStyle(fontSize = 14.sp)
+                            )
+                        }
                     }
                 }
             }
@@ -911,30 +1312,38 @@ class TitaniumChronosWidget : GlanceAppWidget() {
                 Box(
                     modifier = GlanceModifier
                         .fillMaxSize()
-                        .cornerRadius(20.dp)
-                        .background(Color(0xFF1E232A))
-                        .padding(horizontal = 14.dp, vertical = 6.dp)
-                        .then(tapModifier),
-                    contentAlignment = Alignment.Center
+                        .cornerRadius(22.dp)
+                        .background(Color(0xFF94A3B8))
+                        .padding(1.5.dp)
+                        .then(tapModifier)
                 ) {
-                    Row(
-                        modifier = GlanceModifier.fillMaxSize(),
-                        verticalAlignment = Alignment.CenterVertically
+                    Box(
+                        modifier = GlanceModifier
+                            .fillMaxSize()
+                            .cornerRadius(20.5.dp)
+                            .background(Color(0xFF1E232A))
+                            .padding(horizontal = 10.dp, vertical = 6.dp),
+                        contentAlignment = Alignment.Center
                     ) {
-                        Text(
-                            text = "⏱️ ${jalaliDate.timePersian}",
-                            style = TextStyle(color = ColorProvider(Color(0xFF38BDF8)), fontSize = 14.sp, fontWeight = FontWeight.Bold)
-                        )
-                        Spacer(modifier = GlanceModifier.defaultWeight())
-                        Text(
-                            text = "${jalaliDate.dayOfWeekSimple} ${jalaliDate.dayPersian} ${jalaliDate.monthName} ${jalaliDate.yearPersian}",
-                            style = TextStyle(color = ColorProvider(Color.White), fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                        )
-                        Spacer(modifier = GlanceModifier.defaultWeight())
-                        Text(
-                            text = jalaliDate.gregorianDateString,
-                            style = TextStyle(color = ColorProvider(Color(0xFF94A3B8)), fontSize = 11.sp)
-                        )
+                        Row(
+                            modifier = GlanceModifier.fillMaxSize(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = "⏱️ ${jalaliDate.timePersian}",
+                                style = TextStyle(color = ColorProvider(Color(0xFF38BDF8)), fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                            )
+                            Spacer(modifier = GlanceModifier.defaultWeight())
+                            Text(
+                                text = "${jalaliDate.dayOfWeekSimple} ${jalaliDate.dayPersian} ${jalaliDate.monthName} ${jalaliDate.yearPersian}",
+                                style = TextStyle(color = ColorProvider(Color.White), fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                            )
+                            Spacer(modifier = GlanceModifier.defaultWeight())
+                            Text(
+                                text = jalaliDate.gregorianDateString,
+                                style = TextStyle(color = ColorProvider(Color(0xFF94A3B8)), fontSize = 11.sp)
+                            )
+                        }
                     }
                 }
             }
