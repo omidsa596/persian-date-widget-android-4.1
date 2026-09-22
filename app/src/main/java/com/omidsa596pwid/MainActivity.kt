@@ -58,6 +58,8 @@ class MainActivity : ComponentActivity() {
                         developerName = "omidsa596",
                         appName = "ویجت تاریخ شمسی",
                         packageNameText = "com.omidsa596pwid",
+                        versionName = "1.0.3",
+                        versionCode = 3,
                         isBatteryOptimized = isIgnoringBatteryOptimizations(),
                         onPinWidget = { receiverClass -> requestPinWidget(receiverClass) },
                         onOpenBatterySettings = { requestIgnoreBatteryOptimization() }
@@ -130,6 +132,8 @@ fun WidgetHubScreen(
     developerName: String,
     appName: String,
     packageNameText: String,
+    versionName: String,
+    versionCode: Int,
     isBatteryOptimized: Boolean,
     onPinWidget: (Class<*>) -> Unit,
     onOpenBatterySettings: () -> Unit
@@ -381,6 +385,21 @@ fun WidgetHubScreen(
                         fontSize = 10.sp,
                         color = Color(0xFF64748B)
                     )
+
+                    Spacer(modifier = Modifier.height(4.dp))
+
+                    Surface(
+                        shape = RoundedCornerShape(8.dp),
+                        color = Color(0x3310B981)
+                    ) {
+                        Text(
+                            text = "نسخه " + versionName + " (کد " + versionCode.toString() + ")",
+                            fontSize = 10.5.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color(0xFF34D399),
+                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
+                        )
+                    }
 
                     Spacer(modifier = Modifier.height(10.dp))
 
