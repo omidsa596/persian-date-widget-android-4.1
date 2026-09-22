@@ -24,6 +24,7 @@ import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.action.actionSendBroadcast
 import androidx.glance.appwidget.cornerRadius
 import androidx.glance.appwidget.provideContent
+import androidx.glance.background
 import androidx.glance.layout.*
 import androidx.glance.text.*
 import androidx.glance.unit.ColorProvider
@@ -69,7 +70,7 @@ object WidgetBackgroundFactory {
         }
     }
 
-    fun getNeonCyan(w: Int = 640, h = 180): Bitmap = cache.getOrPut("neon_cyan") {
+    fun getNeonCyan(w: Int = 640, h: Int = 180): Bitmap = cache.getOrPut("neon_cyan") {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
         val rect = RectF(6f, 6f, w - 6f, h - 6f)
@@ -141,7 +142,7 @@ object WidgetBackgroundFactory {
         bm
     }
 
-    fun getLuxuryDark(w: Int = 640, h = 180): Bitmap = cache.getOrPut("luxury_dark") {
+    fun getLuxuryDark(w: Int = 640, h: Int = 180): Bitmap = cache.getOrPut("luxury_dark") {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
         val rect = RectF(6f, 6f, w - 6f, h - 6f)
@@ -194,7 +195,7 @@ object WidgetBackgroundFactory {
         bm
     }
 
-    fun getFrostedLiquid(w: Int = 640, h = 180): Bitmap = cache.getOrPut("frosted_liquid") {
+    fun getFrostedLiquid(w: Int = 640, h: Int = 180): Bitmap = cache.getOrPut("frosted_liquid") {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
         val rect = RectF(6f, 6f, w - 6f, h - 6f)
@@ -274,7 +275,7 @@ object WidgetBackgroundFactory {
         bm
     }
 
-    fun getAuroraGlass(w: Int = 640, h = 180): Bitmap = cache.getOrPut("aurora_glass") {
+    fun getAuroraGlass(w: Int = 640, h: Int = 180): Bitmap = cache.getOrPut("aurora_glass") {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
         val rect = RectF(6f, 6f, w - 6f, h - 6f)
@@ -312,7 +313,7 @@ object WidgetBackgroundFactory {
         bm
     }
 
-    fun getCyberGold2x2(w: Int = 380, h = 380): Bitmap = cache.getOrPut("cyber_gold_2x2") {
+    fun getCyberGold2x2(w: Int = 380, h: Int = 380): Bitmap = cache.getOrPut("cyber_gold_2x2") {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
         val rect = RectF(6f, 6f, w - 6f, h - 6f)
@@ -348,7 +349,7 @@ object WidgetBackgroundFactory {
         bm
     }
 
-    fun getDiamondPrism(w: Int = 640, h = 180): Bitmap = cache.getOrPut("diamond_prism") {
+    fun getDiamondPrism(w: Int = 640, h: Int = 180): Bitmap = cache.getOrPut("diamond_prism") {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
         val rect = RectF(6f, 6f, w - 6f, h - 6f)
@@ -389,7 +390,7 @@ object WidgetBackgroundFactory {
         bm
     }
 
-    fun getHologramGrid(w: Int = 640, h = 180): Bitmap = cache.getOrPut("hologram_grid") {
+    fun getHologramGrid(w: Int = 640, h: Int = 180): Bitmap = cache.getOrPut("hologram_grid") {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
         val rect = RectF(6f, 6f, w - 6f, h - 6f)
@@ -449,7 +450,7 @@ object WidgetBackgroundFactory {
         bm
     }
 
-    fun getRoyalEmerald(w: Int = 380, h = 380): Bitmap = cache.getOrPut("royal_emerald") {
+    fun getRoyalEmerald(w: Int = 380, h: Int = 380): Bitmap = cache.getOrPut("royal_emerald") {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
         val rect = RectF(6f, 6f, w - 6f, h - 6f)
@@ -481,7 +482,7 @@ object WidgetBackgroundFactory {
         bm
     }
 
-    fun getExecutiveLeather(w: Int = 640, h = 180): Bitmap = cache.getOrPut("executive_leather") {
+    fun getExecutiveLeather(w: Int = 640, h: Int = 180): Bitmap = cache.getOrPut("executive_leather") {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
         val rect = RectF(6f, 6f, w - 6f, h - 6f)
@@ -507,7 +508,7 @@ object WidgetBackgroundFactory {
         bm
     }
 
-    fun getAnalogCelestial(w: Int = 640, h = 320): Bitmap = cache.getOrPut("analog_celestial") {
+    fun getAnalogCelestial(w: Int = 640, h: Int = 320): Bitmap = cache.getOrPut("analog_celestial") {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
         val rect = RectF(6f, 6f, w - 6f, h - 6f)
@@ -531,7 +532,7 @@ object WidgetBackgroundFactory {
         bm
     }
 
-    fun getGlassCelestial(isDay: Boolean = true, w: Int = 640, h = 180): Bitmap = cache.getOrPut("glass_celestial_$isDay") {
+    fun getGlassCelestial(isDay: Boolean = true, w: Int = 640, h: Int = 180): Bitmap = cache.getOrPut("glass_celestial_$isDay") {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
         val rect = RectF(6f, 6f, w - 6f, h - 6f)
@@ -556,7 +557,7 @@ object WidgetBackgroundFactory {
         bm
     }
 
-    fun getModernCapsule(w: Int = 640, h = 180): Bitmap = cache.getOrPut("modern_capsule") {
+    fun getModernCapsule(w: Int = 640, h: Int = 180): Bitmap = cache.getOrPut("modern_capsule") {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
         val rect = RectF(6f, 6f, w - 6f, h - 6f)
@@ -580,7 +581,7 @@ object WidgetBackgroundFactory {
         bm
     }
 
-    fun getCompactClassic(w: Int = 640, h = 180): Bitmap = cache.getOrPut("compact_classic") {
+    fun getCompactClassic(w: Int = 640, h: Int = 180): Bitmap = cache.getOrPut("compact_classic") {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
         val rect = RectF(6f, 6f, w - 6f, h - 6f)
@@ -604,7 +605,7 @@ object WidgetBackgroundFactory {
         bm
     }
 
-    fun getMinimalPill(w: Int = 640, h = 180): Bitmap = cache.getOrPut("minimal_pill") {
+    fun getMinimalPill(w: Int = 640, h: Int = 180): Bitmap = cache.getOrPut("minimal_pill") {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
         val rect = RectF(6f, 6f, w - 6f, h - 6f)
@@ -628,7 +629,7 @@ object WidgetBackgroundFactory {
         bm
     }
 
-    fun getSplitHorizon(w: Int = 640, h = 180): Bitmap = cache.getOrPut("split_horizon") {
+    fun getSplitHorizon(w: Int = 640, h: Int = 180): Bitmap = cache.getOrPut("split_horizon") {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
         val rect = RectF(6f, 6f, w - 6f, h - 6f)
@@ -646,7 +647,7 @@ object WidgetBackgroundFactory {
         bm
     }
 
-    fun getPaperClean(w: Int = 640, h = 180): Bitmap = cache.getOrPut("paper_clean") {
+    fun getPaperClean(w: Int = 640, h: Int = 180): Bitmap = cache.getOrPut("paper_clean") {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
         val rect = RectF(6f, 6f, w - 6f, h - 6f)
@@ -664,7 +665,7 @@ object WidgetBackgroundFactory {
         bm
     }
 
-    fun getRetroDigital(w: Int = 380, h = 380): Bitmap = cache.getOrPut("retro_digital") {
+    fun getRetroDigital(w: Int = 380, h: Int = 380): Bitmap = cache.getOrPut("retro_digital") {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
         val rect = RectF(6f, 6f, w - 6f, h - 6f)
@@ -693,7 +694,7 @@ object WidgetBackgroundFactory {
         bm
     }
 
-    fun getCalendarTile(w: Int = 380, h = 380): Bitmap = cache.getOrPut("calendar_tile") {
+    fun getCalendarTile(w: Int = 380, h: Int = 380): Bitmap = cache.getOrPut("calendar_tile") {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
         val rect = RectF(6f, 6f, w - 6f, h - 6f)
@@ -711,7 +712,7 @@ object WidgetBackgroundFactory {
         bm
     }
 
-    fun getTitaniumChronos(w: Int = 640, h = 180): Bitmap = cache.getOrPut("titanium_chronos") {
+    fun getTitaniumChronos(w: Int = 640, h: Int = 180): Bitmap = cache.getOrPut("titanium_chronos") {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bm)
         val rect = RectF(6f, 6f, w - 6f, h - 6f)
@@ -800,7 +801,7 @@ class GlassCelestialWidget : GlanceAppWidget() {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Box(
-                            modifier = GlanceModifier.width(44.dp).height(44.dp).cornerRadius(14.dp).background(if (jalaliDate.isDaytime) Color(0xFFF59E0B) else Color(0xFF312E81)),
+                            modifier = GlanceModifier.width(44.dp).height(44.dp).cornerRadius(14.dp).background(ColorProvider(if (jalaliDate.isDaytime) Color(0xFFF59E0B) else Color(0xFF312E81))),
                             contentAlignment = Alignment.Center
                         ) {
                             Text(text = icon, style = TextStyle(fontSize = 22.sp))
@@ -969,7 +970,7 @@ class NeonCyanCardWidget : GlanceAppWidget() {
                 Box(modifier = GlanceModifier.fillMaxSize().then(tapModifier), contentAlignment = Alignment.Center) {
                     Image(provider = ImageProvider(bg), contentDescription = null, modifier = GlanceModifier.fillMaxSize(), contentScale = ContentScale.FillBounds)
                     Row(modifier = GlanceModifier.fillMaxSize().padding(horizontal = 14.dp, vertical = 6.dp), verticalAlignment = Alignment.CenterVertically) {
-                        Box(modifier = GlanceModifier.cornerRadius(12.dp).background(Color(0x3500F0FF)).padding(horizontal = 9.dp, vertical = 5.dp)) {
+                        Box(modifier = GlanceModifier.cornerRadius(12.dp).background(ColorProvider(Color(0x3500F0FF))).padding(horizontal = 9.dp, vertical = 5.dp)) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                                 Text(text = "⚡ ${jalaliDate.timePersian}", style = TextStyle(color = ColorProvider(Color(0xFF00F0FF)), fontSize = 14.sp, fontWeight = FontWeight.Bold))
                                 Text(text = jalaliDate.gregorianDateString, style = TextStyle(color = ColorProvider(Color(0xFF67E8F9)), fontSize = 8.sp))
@@ -981,7 +982,7 @@ class NeonCyanCardWidget : GlanceAppWidget() {
                             Text(text = "سال ${jalaliDate.yearPersian}", style = TextStyle(color = ColorProvider(Color(0xFFE0F2FE)), fontSize = 11.sp))
                         }
                         Spacer(modifier = GlanceModifier.defaultWeight())
-                        Box(modifier = GlanceModifier.cornerRadius(12.dp).background(Color(0x50003049)).padding(horizontal = 10.dp, vertical = 6.dp)) {
+                        Box(modifier = GlanceModifier.cornerRadius(12.dp).background(ColorProvider(Color(0x50003049))).padding(horizontal = 10.dp, vertical = 6.dp)) {
                             Text(text = "${jalaliDate.dayPersian} ${jalaliDate.monthName}", style = TextStyle(color = ColorProvider(Color.White), fontSize = 15.sp, fontWeight = FontWeight.Bold))
                         }
                     }
@@ -1175,7 +1176,7 @@ class HologramGridWidget : GlanceAppWidget() {
                 Box(modifier = GlanceModifier.fillMaxSize().then(tapModifier), contentAlignment = Alignment.Center) {
                     Image(provider = ImageProvider(bg), contentDescription = null, modifier = GlanceModifier.fillMaxSize(), contentScale = ContentScale.FillBounds)
                     Row(modifier = GlanceModifier.fillMaxSize().padding(horizontal = 14.dp, vertical = 6.dp), verticalAlignment = Alignment.CenterVertically) {
-                        Box(modifier = GlanceModifier.cornerRadius(10.dp).background(Color(0x3500F0FF)).padding(horizontal = 9.dp, vertical = 5.dp)) {
+                        Box(modifier = GlanceModifier.cornerRadius(10.dp).background(ColorProvider(Color(0x3500F0FF))).padding(horizontal = 9.dp, vertical = 5.dp)) {
                             Text(text = "🌐 ${jalaliDate.timePersian}", style = TextStyle(color = ColorProvider(Color(0xFF00F0FF)), fontSize = 14.sp, fontWeight = FontWeight.Bold))
                         }
                         Spacer(modifier = GlanceModifier.defaultWeight())
@@ -1184,7 +1185,7 @@ class HologramGridWidget : GlanceAppWidget() {
                             Text(text = "HOLO MATRIX • ${jalaliDate.yearPersian}", style = TextStyle(color = ColorProvider(Color(0xFF67E8F9)), fontSize = 10.sp))
                         }
                         Spacer(modifier = GlanceModifier.defaultWeight())
-                        Box(modifier = GlanceModifier.cornerRadius(10.dp).background(Color(0x400284C7)).padding(horizontal = 8.dp, vertical = 5.dp)) {
+                        Box(modifier = GlanceModifier.cornerRadius(10.dp).background(ColorProvider(Color(0x400284C7))).padding(horizontal = 8.dp, vertical = 5.dp)) {
                             Text(text = "HOLO", style = TextStyle(color = ColorProvider(Color(0xFF00F0FF)), fontSize = 11.sp, fontWeight = FontWeight.Bold))
                         }
                     }
@@ -1229,7 +1230,7 @@ class FrostedLiquidWidget : GlanceAppWidget() {
                 Box(modifier = GlanceModifier.fillMaxSize().then(tapModifier), contentAlignment = Alignment.Center) {
                     Image(provider = ImageProvider(bg), contentDescription = null, modifier = GlanceModifier.fillMaxSize(), contentScale = ContentScale.FillBounds)
                     Row(modifier = GlanceModifier.fillMaxSize().padding(horizontal = 14.dp, vertical = 6.dp), verticalAlignment = Alignment.CenterVertically) {
-                        Box(modifier = GlanceModifier.cornerRadius(12.dp).background(Color(0x35FFFFFF)).padding(horizontal = 9.dp, vertical = 5.dp)) {
+                        Box(modifier = GlanceModifier.cornerRadius(12.dp).background(ColorProvider(Color(0x35FFFFFF))).padding(horizontal = 9.dp, vertical = 5.dp)) {
                             Text(text = "🫧 ${jalaliDate.timePersian}", style = TextStyle(color = ColorProvider(Color(0xFFFBCFE8)), fontSize = 14.sp, fontWeight = FontWeight.Bold))
                         }
                         Spacer(modifier = GlanceModifier.defaultWeight())
@@ -1238,7 +1239,7 @@ class FrostedLiquidWidget : GlanceAppWidget() {
                             Text(text = "بلور مایع • ${jalaliDate.yearPersian}", style = TextStyle(color = ColorProvider(Color(0xFFBAE6FD)), fontSize = 10.sp))
                         }
                         Spacer(modifier = GlanceModifier.defaultWeight())
-                        Box(modifier = GlanceModifier.cornerRadius(12.dp).background(Color(0x4038BDF8)).padding(horizontal = 9.dp, vertical = 5.dp)) {
+                        Box(modifier = GlanceModifier.cornerRadius(12.dp).background(ColorProvider(Color(0x4038BDF8))).padding(horizontal = 9.dp, vertical = 5.dp)) {
                             Text(text = "💧 مایع", style = TextStyle(color = ColorProvider(Color.White), fontSize = 11.sp, fontWeight = FontWeight.Bold))
                         }
                     }

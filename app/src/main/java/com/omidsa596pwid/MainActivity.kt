@@ -58,8 +58,8 @@ class MainActivity : ComponentActivity() {
                         developerName = "omidsa596",
                         appName = "ویجت تاریخ شمسی",
                         packageNameText = "com.omidsa596pwid",
-                        versionName = "1.0.3",
-                        versionCode = 3,
+                        versionName = "1.0.4",
+                        versionCode = 4,
                         isBatteryOptimized = isIgnoringBatteryOptimizations(),
                         onPinWidget = { receiverClass -> requestPinWidget(receiverClass) },
                         onOpenBatterySettings = { requestIgnoreBatteryOptimization() }
